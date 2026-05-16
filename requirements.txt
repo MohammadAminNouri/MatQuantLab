@@ -3,7 +3,6 @@ yfinance
 pandas
 numpy
 scikit-learn
-matplotlib
 PyYAML
 requests
 plotly
