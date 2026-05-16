@@ -1,0 +1,89 @@
+ticker,company,country,region,industry_group,material_link,why_relevant
+ATI,ATI Inc.,United States,North America,Specialty alloys,Titanium / nickel / aerospace / AM powder feedstock,Specialty alloys and aerospace-material exposure
+GE,GE Aerospace,United States,North America,Aerospace,Jet engines / superalloys / titanium,Engine cycle and superalloy demand
+BA,Boeing,United States,North America,Aerospace,Aircraft / aluminum / titanium / supply chain,Aircraft build-rate and supply-chain risk
+RTX,RTX,United States,North America,Aerospace and defense,Engines / missiles / defense electronics,Defense and aerospace material demand
+LMT,Lockheed Martin,United States,North America,Defense,Defense procurement / rare earths / titanium,Defense procurement and strategic materials
+NOC,Northrop Grumman,United States,North America,Defense,Defense electronics / composites / rare earths,Defense electronics and aerospace
+GD,General Dynamics,United States,North America,Defense,Steel / aluminum / defense systems,Defense and shipbuilding
+HWM,Howmet Aerospace,United States,North America,Aerospace materials,Titanium / nickel / aerospace forgings,Aerospace components and engine materials
+NUE,Nucor,United States,North America,Steel,Steel / scrap / construction,Steel cycle and industrial demand
+STLD,Steel Dynamics,United States,North America,Steel,Steel / scrap / construction,Steel and construction cycle
+AA,Alcoa,United States,North America,Aluminum,Aluminum / smelting power cost,Power-sensitive aluminum producer
+FCX,Freeport-McMoRan,United States,North America,Copper mining,Copper supply and demand,Copper producer
+CAT,Caterpillar,United States,North America,Machinery,Mining equipment / steel / industrial capex,Mining and industrial capex
+DE,Deere,United States,North America,Machinery,Steel / agriculture / industrial capex,Industrial machinery and steel exposure
+HON,Honeywell,United States,North America,Industrial / aerospace,Aerospace systems / automation,Aerospace and industrial cycle
+MMM,3M,United States,North America,Industrial materials,Chemicals / industrial materials,Industrial inputs
+DDD,3D Systems,United States,North America,Additive manufacturing,AM systems / polymers / metal printing,Additive manufacturing pure-play
+SSYS,Stratasys,United States,North America,Additive manufacturing,AM systems / industrial printing,Additive manufacturing equipment
+VLD,Velo3D,United States,North America,Additive manufacturing,Metal LPBF / aerospace,Metal AM systems
+MTLS,Materialise,Belgium,Europe,Additive manufacturing,AM software / medical / aerospace,AM software and services
+AIR.PA,Airbus,France,Europe,Aerospace,Aircraft / aluminum / titanium,Aircraft build-rate exposure
+SAF.PA,Safran,France,Europe,Aerospace,Jet engines / nickel / titanium,Engine and aerospace supply chain
+HO.PA,Thales,France,Europe,Defense electronics,Rare earths / semiconductors / defense,Defense electronics
+DG.PA,Vinci,France,Europe,Infrastructure,Steel / cement / energy,Infrastructure demand
+SU.PA,Schneider Electric,France,Europe,Electrical equipment,Copper / electrification / automation,Electrification and grid equipment
+ACA.PA,Air Liquide,France,Europe,Industrial gases,Hydrogen / process gases / energy,Industrial gas and process energy
+RR.L,Rolls-Royce,United Kingdom,Europe,Aerospace,Jet engines / nickel superalloys,Engine cycle and superalloys
+BA.L,BAE Systems,United Kingdom,Europe,Defense,Defense systems / rare earths,Defense procurement
+RIO.L,Rio Tinto,United Kingdom,Europe,Mining,Iron ore / aluminum / copper,Diversified mining
+GLEN.L,Glencore,United Kingdom,Europe,Mining and trading,Copper / cobalt / coal,Commodity supply and trading
+AAL.L,Anglo American,United Kingdom,Europe,Mining,Copper / platinum / iron ore,Diversified mining
+ANTO.L,Antofagasta,United Kingdom,Europe,Copper mining,Copper / Chile supply,Copper producer
+RHM.DE,Rheinmetall,Germany,Europe,Defense,Munitions / steel / defense procurement,Defense procurement
+SIE.DE,Siemens,Germany,Europe,Industrial automation,Electrification / copper / automation,Grid and industrial automation
+BAS.DE,BASF,Germany,Europe,Chemicals,Natural gas / feedstock / chemicals,Energy and feedstock exposure
+VOW3.DE,Volkswagen,Germany,Europe,Autos,Steel / aluminum / batteries,Auto and battery chain
+MBG.DE,Mercedes-Benz,Germany,Europe,Autos,Steel / aluminum / batteries,Premium autos and battery materials
+BMW.DE,BMW,Germany,Europe,Autos,Steel / aluminum / batteries,Autos and battery materials
+MT.AS,ArcelorMittal,Netherlands,Europe,Steel,Steel / iron ore / coking coal,Global steel producer
+ASML.AS,ASML,Netherlands,Europe,Semiconductor equipment,Semiconductor equipment / rare earths / Taiwan,Lithography and semiconductor cycle
+STM.PA,STMicroelectronics,France,Europe,Semiconductors,Auto chips / electronics,Industrial and auto semiconductors
+ENI.MI,Eni,Italy,Europe,Energy,Oil / gas / LNG,Energy and fuel channel
+LDO.MI,Leonardo,Italy,Europe,Aerospace and defense,Defense electronics / aerospace,Defense and aerospace
+STLAM.MI,Stellantis,Italy,Europe,Autos,Steel / aluminum / batteries,Auto production and battery chain
+TEN.MI,Tenaris,Italy,Europe,Steel pipes,Steel / oilfield / energy,Energy and steel pipe demand
+1211.HK,BYD,China,Asia,EV and batteries,Lithium / batteries / rare earths,EV and battery chain
+2899.HK,Zijin Mining,China,Asia,Mining,Copper / gold / lithium,Mining and metals
+600019.SS,Baoshan Iron & Steel,China,Asia,Steel,Steel and China construction,China steel cycle
+601088.SS,China Shenhua Energy,China,Asia,Coal / power,Coal / power / energy security,Coal and power
+601899.SS,Zijin Mining,China,Asia,Mining,Copper / gold / lithium,China-listed mining
+300750.SZ,CATL,China,Asia,Batteries,Lithium / nickel / cobalt / graphite,Battery supply chain
+601012.SS,LONGi Green Energy,China,Asia,Solar,Silver / polysilicon / aluminum,Solar materials
+000725.SZ,BOE Technology,China,Asia,Electronics,Displays / electronics materials,Electronics supply chain
+7203.T,Toyota,Japan,Asia,Autos,Steel / aluminum / batteries,Autos and batteries
+7267.T,Honda,Japan,Asia,Autos,Steel / aluminum / batteries,Autos
+7011.T,Mitsubishi Heavy Industries,Japan,Asia,Heavy industry and aerospace,Aerospace / defense / energy systems,Heavy industrial systems
+7012.T,Kawasaki Heavy Industries,Japan,Asia,Heavy industry,Aerospace / industrial machinery,Industrial/aerospace cycle
+7013.T,IHI,Japan,Asia,Aerospace and heavy machinery,Jet engines / energy systems,Aerospace engines
+5713.T,Sumitomo Metal Mining,Japan,Asia,Mining and materials,Nickel / copper / battery materials,Nonferrous metals
+5401.T,Nippon Steel,Japan,Asia,Steel,Steel / iron ore / coking coal,Steel producer
+6501.T,Hitachi,Japan,Asia,Industrial systems,Power / grid / automation,Electrification and infrastructure
+6503.T,Mitsubishi Electric,Japan,Asia,Electrical equipment,Copper / semiconductors / automation,Electrical equipment
+6758.T,Sony Group,Japan,Asia,Electronics,Semiconductors / sensors / electronics,Electronics cycle
+005930.KS,Samsung Electronics,South Korea,Asia,Semiconductors,Semiconductors / memory / electronics,Memory and electronics
+373220.KS,LG Energy Solution,South Korea,Asia,Batteries,Lithium / nickel / cobalt,Battery manufacturing
+005490.KS,POSCO Holdings,South Korea,Asia,Steel and materials,Steel / battery materials,Steel and battery materials
+000660.KS,SK Hynix,South Korea,Asia,Semiconductors,Memory / semiconductors,Semiconductor cycle
+066570.KS,LG Electronics,South Korea,Asia,Electronics,Appliances / electronics materials,Electronics and appliances
+2330.TW,TSMC,Taiwan,Asia,Semiconductors,Semiconductors / Taiwan risk,Foundry and geopolitical risk
+2317.TW,Foxconn,Taiwan,Asia,Electronics manufacturing,Electronics assembly / supply chain,Manufacturing supply chain
+2308.TW,Delta Electronics,Taiwan,Asia,Power electronics,Copper / electronics / power systems,Power electronics
+BHP.AX,BHP,Australia,Asia-Pacific,Mining,Iron ore / copper / coal,Diversified mining
+RIO.AX,Rio Tinto,Australia,Asia-Pacific,Mining,Iron ore / aluminum / copper,Diversified mining
+FMG.AX,Fortescue,Australia,Asia-Pacific,Iron ore,Iron ore / steel chain,Iron ore producer
+LYC.AX,Lynas Rare Earths,Australia,Asia-Pacific,Rare earths,Rare earths / NdPr,Rare earth supply
+PLS.AX,Pilbara Minerals,Australia,Asia-Pacific,Lithium,Lithium / spodumene,Lithium producer
+MIN.AX,Mineral Resources,Australia,Asia-Pacific,Mining services / lithium,Lithium / iron ore,Mining and lithium
+VALE,VALE,Brazil,Latin America,Mining,Iron ore / nickel / copper,Mining and nickel
+PBR,Petrobras,Brazil,Latin America,Energy,Oil / gas / fuel,Energy producer
+GGB,Gerdau,Brazil,Latin America,Steel,Steel / construction,Steel producer
+TITN,Companhia Siderurgica Nacional,Brazil,Latin America,Steel,Steel / iron ore,Steel/iron ore exposure
+SCCO,Southern Copper,Peru,Latin America,Copper mining,Copper / mining,Copper producer
+CENX,Century Aluminum,United States,North America,Aluminum,Aluminum / power cost,Aluminum producer
+CCJ,Cameco,Canada,North America,Uranium,Uranium / nuclear fuel,Uranium producer
+TECK,Teck Resources,Canada,North America,Mining,Copper / coal / zinc,Diversified mining
+LUN.TO,Lundin Mining,Canada,North America,Mining,Copper / nickel / zinc,Base metals
+SHOP.TO,Shopify,Canada,North America,Software,Not material-linked; market beta,Control/contrast asset
+NTR,Nutrien,Canada,North America,Fertilizers,Potash / gas / agriculture,Agricultural materials
