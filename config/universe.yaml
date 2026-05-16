@@ -1,0 +1,60 @@
+project:
+  name: MatQuantLab
+  base_currency: USD
+  start_date: "2010-01-01"
+
+assets:
+  benchmark:
+    SPY: "S&P 500 ETF"
+  materials_and_mining:
+    XLB: "Materials Select Sector SPDR"
+    XME: "Metals & Mining ETF"
+    COPX: "Copper Miners ETF"
+    PICK: "Global Metals & Mining Producers ETF"
+  aerospace_defense_industrials:
+    XLI: "Industrials Select Sector SPDR"
+    ITA: "US Aerospace & Defense ETF"
+    XAR: "Aerospace & Defense ETF"
+    VIS: "Vanguard Industrials ETF"
+  additive_manufacturing:
+    PRNT: "3D Printing ETF"
+    DDD: "3D Systems"
+    SSYS: "Stratasys"
+    MTLS: "Materialise"
+    NNDM: "Nano Dimension"
+  defense_and_aerospace_stocks:
+    LMT: "Lockheed Martin"
+    RTX: "RTX Corporation"
+    NOC: "Northrop Grumman"
+    GD: "General Dynamics"
+    BA: "Boeing"
+  mining_and_materials_stocks:
+    FCX: "Freeport-McMoRan"
+    SCCO: "Southern Copper"
+    AA: "Alcoa"
+    NUE: "Nucor"
+    STLD: "Steel Dynamics"
+
+commodities_and_macro:
+  metals_energy:
+    HG=F: "Copper futures"
+    ALI=F: "Aluminum futures proxy if available"
+    CL=F: "WTI crude oil futures"
+    NG=F: "Natural gas futures"
+    GC=F: "Gold futures"
+    SI=F: "Silver futures"
+    PL=F: "Platinum futures"
+    PA=F: "Palladium futures"
+  macro_market:
+    DX-Y.NYB: "US Dollar Index"
+    ^TNX: "10-year Treasury yield proxy"
+    ^VIX: "VIX volatility index"
+
+fred_series:
+  DGS10: "10-Year Treasury Constant Maturity Rate"
+  T10YIE: "10-Year Breakeven Inflation Rate"
+  INDPRO: "Industrial Production Index"
+  CPIAUCSL: "Consumer Price Index"
+
+horizons: [5, 20, 60]
+transaction_cost_bps: 10
