@@ -23,7 +23,7 @@ The project is designed as a research and portfolio platform — not a trading b
 
 ### Live app
 
-[MatQuantLab Live Dashboard](https://matquantlab-gegdszewybwbbbdvm5kbnc.streamlit.app/?utm_source=chatgpt.com)
+[MatQuantLab Live Dashboard](https://matquantlab-gegdszewybwbbbdvm5kbnc.streamlit.app)
 
 The dashboard updates market data using Yahoo Finance through `yfinance`.
 
