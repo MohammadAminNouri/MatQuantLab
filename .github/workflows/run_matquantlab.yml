@@ -1,0 +1,45 @@
+name: Run MatQuantLab Research Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: |
+          pytest -q
+
+      - name: Run MatQuantLab pipeline
+        run: |
+          python scripts/run_daily_update.py
+
+      - name: Commit generated outputs
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add data outputs || true
+          git commit -m "Update MatQuantLab generated outputs" || echo "No generated changes to commit"
+          git push || true
