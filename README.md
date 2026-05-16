@@ -183,3 +183,19 @@ This is a research and education project, **not financial advice**. Free market 
 - [x] regime analysis
 - [x] Streamlit dashboard
 - [x] GitHub Actions workflow
+## Automated Research Outputs
+
+### Critical Materials Stress Index
+![CMSI](outputs/figures/cmsi.png)
+
+### Lead-Lag Signal Heatmap
+![Heatmap](outputs/figures/signal_decay_heatmap.png)
+
+### ML Model Comparison
+![Models](outputs/figures/model_leaderboard.png)
+
+### Strategy Equity Curve
+![Backtest](outputs/figures/backtest_equity_curve.png)
+
+### Feature Importance
+![Importance](outputs/figures/feature_importance.png)
