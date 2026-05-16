@@ -1,151 +1,162 @@
 materials:
   Copper:
+    long_name: "Copper — industrial demand and electrification proxy"
     tickers: ["HG=F", "CPER", "COPX"]
     family: "industrial_metals"
-    role: "industrial demand, construction, electrification, China cycle"
+    role: "construction, grids, EVs, electronics, manufacturing cycle, China demand"
     proxy_quality: "high"
-    weight: 0.12
+    weight: 0.11
   Aluminum:
-    tickers: ["ALI=F", "JJU", "AA"]
+    long_name: "Aluminum — aerospace and energy-intensive manufacturing proxy"
+    tickers: ["ALI=F", "AA", "JJU"]
     family: "industrial_metals"
-    role: "energy-intensive manufacturing, aerospace, transport, packaging"
+    role: "aerospace structures, packaging, transport, smelting power costs"
     proxy_quality: "medium"
-    weight: 0.10
+    weight: 0.09
   Nickel:
-    tickers: ["JJN", "NICKEL", "VALE", "NILSY"]
+    long_name: "Nickel — stainless steel, batteries and superalloys proxy"
+    tickers: ["JJN", "VALE", "NILSY"]
     family: "superalloys_battery_metals"
-    role: "stainless steel, superalloys, batteries, aerospace"
+    role: "stainless steel, batteries, superalloys, aerospace turbine materials"
     proxy_quality: "proxy"
     weight: 0.08
-  Zinc:
-    tickers: ["ZINC.L", "GLEN.L", "TECK"]
-    family: "industrial_metals"
-    role: "galvanized steel, infrastructure, construction"
-    proxy_quality: "proxy"
-    weight: 0.05
-  Tin:
-    tickers: ["TINM.L", "AFM.V"]
-    family: "electronics_metals"
-    role: "solder, electronics, semiconductors"
-    proxy_quality: "proxy"
-    weight: 0.04
-  Lead:
-    tickers: ["LEAD.L", "GLEN.L"]
-    family: "industrial_metals"
-    role: "batteries, industrial cycle"
-    proxy_quality: "proxy"
-    weight: 0.03
   IronOre:
+    long_name: "Iron ore — steel-chain and China construction proxy"
     tickers: ["TIO=F", "RIO", "BHP", "VALE"]
     family: "steel_chain"
-    role: "steel production, China construction, infrastructure"
+    role: "steel production, construction, infrastructure, China cycle"
     proxy_quality: "medium"
-    weight: 0.08
+    weight: 0.075
   Steel:
+    long_name: "Steel — steel producers and industrial capex proxy"
     tickers: ["SLX", "MT", "NUE", "X"]
     family: "steel_chain"
-    role: "steel producers, construction, industrial capex"
+    role: "manufacturing, construction, automotive, industrial capex"
     proxy_quality: "medium"
-    weight: 0.07
+    weight: 0.065
   CokingCoal:
+    long_name: "Coking coal — metallurgical coal for steelmaking"
     tickers: ["HCC", "BTU", "ARCH"]
     family: "steel_chain"
-    role: "metallurgical coal, steelmaking input"
+    role: "blast-furnace steelmaking input; not the same as power coal"
     proxy_quality: "proxy"
-    weight: 0.05
+    weight: 0.045
   ThermalCoal:
+    long_name: "Thermal coal — power-generation energy stress proxy"
     tickers: ["BTU", "CEIX", "WHC.AX"]
     family: "energy_inputs"
-    role: "power generation, energy security, China/India demand"
+    role: "electricity generation, energy security, Asia power demand"
     proxy_quality: "proxy"
     weight: 0.04
   Lithium:
+    long_name: "Lithium — battery and energy-storage supply-chain proxy"
     tickers: ["LIT", "ALB", "SQM", "PLL"]
     family: "battery_materials"
-    role: "EV batteries, energy storage, cathode supply chain"
+    role: "EVs, batteries, energy storage, cathode supply chain"
     proxy_quality: "medium"
-    weight: 0.08
+    weight: 0.075
   Cobalt:
+    long_name: "Cobalt — cathode and geopolitical battery-material proxy"
     tickers: ["COB.AX", "GLEN.L", "VALE"]
     family: "battery_materials"
-    role: "battery cathodes, geopolitical supply-chain risk"
+    role: "battery cathodes and supply-chain/geopolitical risk"
     proxy_quality: "proxy"
-    weight: 0.05
+    weight: 0.045
   Graphite:
+    long_name: "Graphite — battery anode and China export-control proxy"
     tickers: ["NMG", "SYAAF", "TGR.AX"]
     family: "battery_materials"
-    role: "battery anodes, China export-control sensitivity"
+    role: "battery anodes, China-dependent processing, export-control sensitivity"
     proxy_quality: "proxy"
-    weight: 0.05
-  Manganese:
-    tickers: ["MN.V", "S32.AX"]
-    family: "battery_materials"
-    role: "steel and battery cathodes"
-    proxy_quality: "proxy"
-    weight: 0.04
+    weight: 0.045
   RareEarths:
+    long_name: "Rare earths — magnets, EVs, wind, defense and export controls"
     tickers: ["REMX", "MP", "LYC.AX"]
-    family: "critical_minerals"
-    role: "magnets, defense, EVs, wind, export-control sensitivity"
+    family: "rare_earths"
+    role: "permanent magnets, defense systems, EV motors, wind turbines"
     proxy_quality: "medium"
     weight: 0.09
+  Neodymium:
+    long_name: "Neodymium — NdFeB magnet proxy"
+    tickers: ["REMX", "MP", "LYC.AX"]
+    family: "rare_earths"
+    role: "high-strength permanent magnets for EV motors and wind turbines"
+    proxy_quality: "proxy"
+    weight: 0.045
+  Dysprosium:
+    long_name: "Dysprosium — high-temperature magnet proxy"
+    tickers: ["REMX", "MP", "LYC.AX"]
+    family: "rare_earths"
+    role: "heat-resistant magnets for EVs, defense and aerospace electronics"
+    proxy_quality: "proxy"
+    weight: 0.04
   Titanium:
-    tickers: ["TITN", "ATI", "TROX", "CRS"]
+    long_name: "Titanium — aerospace/defense structural material proxy"
+    tickers: ["ATI", "TROX", "CRS", "TITN"]
     family: "aerospace_defense_materials"
-    role: "aerospace structures, superalloys, defense supply chain"
+    role: "aerospace structures, titanium sponge proxy, defense supply chain"
     proxy_quality: "proxy"
     weight: 0.07
   Tungsten:
+    long_name: "Tungsten — hard-metal tooling and defense proxy"
     tickers: ["TUNG.L", "ALMTF"]
     family: "aerospace_defense_materials"
-    role: "hard metals, defense, tooling"
+    role: "hard metals, tooling, penetrators, defense supply chain"
     proxy_quality: "proxy"
     weight: 0.04
   Uranium:
+    long_name: "Uranium — nuclear fuel and energy-security proxy"
     tickers: ["URA", "URNM", "CCJ"]
     family: "energy_security"
-    role: "nuclear power, energy security, grid reliability"
+    role: "nuclear power, grid reliability, energy independence"
     proxy_quality: "medium"
     weight: 0.07
   Oil:
+    long_name: "WTI crude oil — fuel, transport and inflation proxy"
     tickers: ["CL=F", "USO", "XLE"]
     family: "energy_inputs"
-    role: "transport, production cost, inflation, geopolitics"
+    role: "transport, fuel, energy cost, inflation, geopolitical shock"
     proxy_quality: "high"
     weight: 0.10
-  NaturalGas:
-    tickers: ["NG=F", "UNG", "BOIL"]
+  BrentOil:
+    long_name: "Brent oil — global oil and Middle East/Europe energy proxy"
+    tickers: ["BZ=F", "BNO"]
     family: "energy_inputs"
-    role: "energy-intensive manufacturing, power cost, Europe stress"
+    role: "global oil benchmark, Middle East and Europe energy risk"
     proxy_quality: "high"
     weight: 0.08
-  ElectricityPower:
-    tickers: ["XLU", "VPU"]
+  NaturalGas:
+    long_name: "Natural gas — power and energy-intensive manufacturing proxy"
+    tickers: ["NG=F", "UNG", "BOIL"]
     family: "energy_inputs"
-    role: "power cost / utility stress proxy"
-    proxy_quality: "proxy"
-    weight: 0.03
+    role: "electricity, heating, chemical feedstock, smelting/manufacturing cost"
+    proxy_quality: "high"
+    weight: 0.08
   Gold:
+    long_name: "Gold — safe-haven, real-rate and geopolitical stress proxy"
     tickers: ["GC=F", "GLD"]
     family: "precious_stress"
-    role: "safe haven, real rates, geopolitical stress"
+    role: "safe haven, central bank demand, real yields, crisis hedging"
     proxy_quality: "high"
     weight: 0.07
   Silver:
+    long_name: "Silver — precious/industrial hybrid proxy"
     tickers: ["SI=F", "SLV"]
     family: "precious_industrial"
-    role: "precious and industrial demand hybrid"
+    role: "solar, electronics, industrial demand and precious-metal stress"
     proxy_quality: "high"
-    weight: 0.04
+    weight: 0.045
   Platinum:
+    long_name: "Platinum — auto catalyst and hydrogen economy proxy"
     tickers: ["PL=F", "PPLT"]
     family: "precious_industrial"
-    role: "auto catalysts, hydrogen, industrial demand"
+    role: "auto catalysts, hydrogen, chemical and industrial demand"
     proxy_quality: "high"
     weight: 0.04
   Palladium:
+    long_name: "Palladium — auto catalyst and Russia supply-risk proxy"
     tickers: ["PA=F", "PALL"]
     family: "precious_industrial"
-    role: "auto catalysts, Russia supply risk"
+    role: "auto catalysts, Russia supply risk, industrial demand"
     proxy_quality: "high"
     weight: 0.04

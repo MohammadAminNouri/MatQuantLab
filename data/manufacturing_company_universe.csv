@@ -1,0 +1,128 @@
+ticker,company,country,region,industry_group,material_link,why_relevant,primary_exposure,secondary_exposure,notes
+CAT,Caterpillar,United States,North America,Heavy machinery,"mining, construction, energy",Mining equipment and industrial cycle proxy,steel_chain,energy,large industrial machinery
+DE,Deere & Company,United States,North America,Machinery,"agriculture, steel, industrial cycle",Agricultural machinery and industrial demand proxy,steel_chain,macro_beta,manufacturing cycle
+GE,GE Aerospace,United States,North America,Aerospace,"aerospace, titanium, nickel, defense",Aerospace engine/materials demand proxy,aerospace,nickel,jet-engine supply chain
+RTX,RTX Corporation,United States,North America,Aerospace/Defense,"defense, titanium, rare earths",Defense/aerospace systems and supply-chain proxy,defense,aerospace,defense procurement
+LMT,Lockheed Martin,United States,North America,Defense,"defense, rare earths, titanium",Defense spending and strategic materials proxy,defense,rare_earths,missiles/aircraft systems
+BA,Boeing,United States,North America,Aerospace,"aerospace, aluminum, titanium",Aircraft production and aerospace materials proxy,aerospace,aluminum,commercial aerospace
+NUE,Nucor,United States,North America,Steel,"steel, scrap, construction",US steel-cycle proxy,steel_chain,energy,steel producer
+AA,Alcoa,United States,North America,Aluminum,"aluminum, energy",Aluminum and smelting power-cost proxy,aluminum,energy,primary aluminum
+FCX,Freeport-McMoRan,United States,North America,Copper mining,"copper, molybdenum",Large copper producer proxy,copper,macro_beta,copper supply/demand
+HON,Honeywell,United States,North America,Industrial/Aerospace,"aerospace, industrial automation",Industrial/aerospace system proxy,aerospace,macro_beta,diversified industrial
+TECK,Teck Resources,Canada,North America,Mining,"copper, zinc, coal",Diversified base-metals and coal producer,copper,coal,mining cycle
+CCJ,Cameco,Canada,North America,Uranium,"uranium, nuclear fuel",Uranium/nuclear fuel-cycle proxy,uranium,energy,energy security
+ABX.TO,Barrick Gold,Canada,North America,Gold mining,"gold, copper",Gold and geopolitical stress proxy,gold,copper,precious metals
+FM.TO,First Quantum Minerals,Canada,North America,Copper mining,copper,Copper producer with high cycle sensitivity,copper,geopolitical_sensitivity,copper mines
+LAC,Lithium Americas,Canada,North America,Lithium,"lithium, battery materials",Lithium/battery supply-chain proxy,battery,geopolitical_sensitivity,battery materials
+MGA,Magna International,Canada,North America,Auto parts,"autos, aluminum, steel",Automotive manufacturing cycle proxy,steel_chain,aluminum,auto supply chain
+BBD-B.TO,Bombardier,Canada,North America,Aerospace,"aerospace, aluminum, titanium",Business-jet/aerospace supply-chain proxy,aerospace,aluminum,aircraft manufacturing
+VALE,Vale,Brazil,Latin America,Iron ore/mining,"iron ore, nickel",Iron ore and nickel producer proxy,steel_chain,nickel,Brazil mining
+PBR,Petrobras,Brazil,Latin America,Energy,"oil, fuel, gas",Oil/fuel and emerging-market energy proxy,energy,geopolitical_sensitivity,oil producer
+GGB,Gerdau,Brazil,Latin America,Steel,"steel, construction",Steel and infrastructure proxy,steel_chain,macro_beta,steel producer
+SID,Companhia Siderurgica Nacional,Brazil,Latin America,Steel/mining,"steel, iron ore",Brazil steel/iron ore chain proxy,steel_chain,energy,integrated steel
+ERJ,Embraer,Brazil,Latin America,Aerospace,"aerospace, aluminum, defense",Aircraft and defense/aerospace proxy,aerospace,defense,regional aircraft
+WEGE3.SA,WEG,Brazil,Latin America,Electrical equipment,"motors, electrification, copper",Industrial electrification proxy,copper,macro_beta,motors and automation
+RIO.L,Rio Tinto,United Kingdom,Europe,Mining,"iron ore, aluminum, copper, lithium",Global mining/materials proxy,steel_chain,aluminum,diversified mining
+GLEN.L,Glencore,United Kingdom,Europe,Mining/trading,"copper, zinc, coal, cobalt",Commodity trading/mining proxy,copper,coal,critical materials
+BA.L,BAE Systems,United Kingdom,Europe,Defense,"defense, aerospace, rare earths",Defense spending and strategic materials proxy,defense,rare_earths,defense systems
+RR.L,Rolls-Royce Holdings,United Kingdom,Europe,Aerospace,"jet engines, nickel, titanium",Jet-engine/aerospace materials proxy,aerospace,nickel,turbines
+AAL.L,Anglo American,United Kingdom,Europe,Mining,"copper, platinum, iron ore",Diversified mining and PGM exposure,copper,precious_industrial,mining
+ANTO.L,Antofagasta,United Kingdom,Europe,Copper mining,copper,Copper mining proxy,copper,macro_beta,Chile copper
+JMAT.L,Johnson Matthey,United Kingdom,Europe,Specialty chemicals,"platinum, palladium, catalysts",Auto catalysts and specialty materials proxy,precious_industrial,energy,catalysts
+SIE.DE,Siemens,Germany,Europe,Industrial automation,"electrification, copper, industrial automation",Automation/electrification proxy,copper,macro_beta,industrial tech
+BAS.DE,BASF,Germany,Europe,Chemicals,"energy, gas, industrial chemicals",Chemical/feedstock and energy-cost proxy,energy,macro_beta,chemicals
+VOW3.DE,Volkswagen,Germany,Europe,Autos,"steel, aluminum, batteries",Auto manufacturing and battery materials proxy,steel_chain,battery,vehicle manufacturing
+BMW.DE,BMW,Germany,Europe,Autos,"steel, aluminum, batteries",Premium auto/materials demand proxy,steel_chain,battery,autos
+MBG.DE,Mercedes-Benz Group,Germany,Europe,Autos,"steel, aluminum, batteries",Auto cycle and materials demand proxy,steel_chain,battery,autos
+RHM.DE,Rheinmetall,Germany,Europe,Defense,"defense, steel, tungsten",Defense spending and materials proxy,defense,steel_chain,munitions/vehicles
+IFX.DE,Infineon Technologies,Germany,Europe,Semiconductors,"semiconductors, electronics metals",Power semiconductors and industrial electronics proxy,semiconductor,rare_earths,chips
+AIR.PA,Airbus,France,Europe,Aerospace,"aerospace, aluminum, titanium",Aircraft production and aerospace supply-chain proxy,aerospace,aluminum,commercial aerospace
+SAF.PA,Safran,France,Europe,Aerospace,"jet engines, titanium, nickel",Jet-engine/aerospace materials proxy,aerospace,nickel,aerospace suppliers
+HO.PA,Thales,France,Europe,Defense/electronics,"defense, semiconductors, rare earths",Defense electronics and geopolitical proxy,defense,semiconductor,military electronics
+SU.PA,Schneider Electric,France,Europe,Electrical equipment,"electrification, copper, grid",Electrification/grid equipment proxy,copper,macro_beta,power systems
+AI.PA,Air Liquide,France,Europe,Industrial gases,"hydrogen, industrial gases, energy",Industrial gas and hydrogen proxy,energy,macro_beta,industrial gases
+TTE.PA,TotalEnergies,France,Europe,Energy,"oil, gas, LNG",Fuel/gas and energy-security proxy,energy,geopolitical_sensitivity,energy
+DG.PA,Vinci,France,Europe,Infrastructure,"construction, steel, cement",Infrastructure/materials demand proxy,steel_chain,macro_beta,construction
+ENI.MI,Eni,Italy,Europe,Energy,"oil, gas, LNG","Energy, fuel and gas proxy",energy,geopolitical_sensitivity,Mediterranean energy
+STLAM.MI,Stellantis,Italy,Europe,Autos,"steel, aluminum, batteries",Auto manufacturing/materials proxy,steel_chain,battery,vehicle manufacturing
+LDO.MI,Leonardo,Italy,Europe,Aerospace/Defense,"defense, aerospace, electronics",Defense/aerospace systems proxy,defense,aerospace,defense procurement
+PIRC.MI,Pirelli,Italy,Europe,Auto components,"rubber, energy, auto cycle",Auto supply-chain and energy-cost proxy,energy,macro_beta,tires
+TEN.MI,Tenaris,Italy,Europe,Steel pipe,"steel, oil services",Steel pipe and oil/gas capex proxy,steel_chain,energy,pipes
+BZU.MI,Buzzi,Italy,Europe,Cement/materials,"cement, energy, construction",Cement and construction material proxy,energy,steel_chain,cement
+RACE.MI,Ferrari,Italy,Europe,Autos,"aluminum, carbon fiber, luxury autos",High-end auto/industrial materials proxy,aluminum,macro_beta,autos
+ASML.AS,ASML Holding,Netherlands,Europe,Semiconductor equipment,"semiconductors, rare earths, precision machinery",Critical semiconductor equipment proxy,semiconductor,rare_earths,lithography
+ASM.AS,ASM International,Netherlands,Europe,Semiconductor equipment,"semiconductors, specialty materials",Semiconductor equipment proxy,semiconductor,rare_earths,chip tools
+AKZA.AS,Akzo Nobel,Netherlands,Europe,Chemicals/coatings,"chemicals, energy",Chemicals and industrial coatings proxy,energy,macro_beta,coatings
+MT.AS,ArcelorMittal,Netherlands,Europe,Steel,"steel, iron ore, coal",Global steel-cycle proxy,steel_chain,coal,steel
+PHIA.AS,Philips,Netherlands,Europe,Medical technology,"electronics, semiconductors",Industrial electronics/medical tech proxy,semiconductor,macro_beta,medtech
+NXPI,NXP Semiconductors,Netherlands,Europe,Semiconductors,"chips, auto electronics",Auto/industrial semiconductor proxy,semiconductor,macro_beta,chips
+VOLV-B.ST,Volvo AB,Sweden,Europe,Heavy vehicles,"steel, aluminum, industrial cycle",Truck/heavy industry cycle proxy,steel_chain,aluminum,trucks
+ATCO-A.ST,Atlas Copco,Sweden,Europe,Industrial machinery,"mining equipment, industrial capex",Industrial equipment proxy,steel_chain,macro_beta,compressors/mining
+SAND.ST,Sandvik,Sweden,Europe,Engineering/mining tools,"steel, tungsten, mining tools",Mining tools and hard-metals proxy,steel_chain,tungsten,industrial tooling
+SKF-B.ST,SKF,Sweden,Europe,Bearings,"steel, industrial cycle",Bearings and machinery-cycle proxy,steel_chain,macro_beta,bearings
+SSAB-A.ST,SSAB,Sweden,Europe,Steel,"steel, coal, energy",Steel and energy-cost proxy,steel_chain,coal,steel
+SAAB-B.ST,Saab,Sweden,Europe,Defense,"defense, aerospace",Defense procurement proxy,defense,aerospace,defense
+KNEBV.HE,Kone,Finland,Europe,Industrial equipment,"steel, construction, urbanization",Elevator/construction-cycle proxy,steel_chain,macro_beta,elevators
+METSO.HE,Metso,Finland,Europe,Mining equipment,"mining equipment, steel",Mining/process equipment proxy,steel_chain,copper,mining suppliers
+OUT1V.HE,Outokumpu,Finland,Europe,Stainless steel,"steel, nickel",Stainless steel and nickel proxy,steel_chain,nickel,stainless steel
+WRT1V.HE,Wartsila,Finland,Europe,Marine/energy equipment,"shipping, energy, industrial engines",Marine/energy equipment proxy,energy,macro_beta,engines
+NESTE.HE,Neste,Finland,Europe,Energy/refining,"fuel, refining, renewable fuels",Fuel/refinery and energy proxy,energy,geopolitical_sensitivity,refining
+VALMT.HE,Valmet,Finland,Europe,Industrial equipment,"process machinery, pulp/paper",Industrial process equipment proxy,macro_beta,steel_chain,machinery
+1211.HK,BYD,China,Asia,EVs/batteries,"EVs, batteries, lithium, rare earths",China EV/battery chain proxy,battery,rare_earths,EV manufacturing
+2899.HK,Zijin Mining,China,Asia,Mining,"gold, copper, lithium",China mining and metals proxy,copper,gold,mining
+1088.HK,China Shenhua Energy,China,Asia,Coal/energy,"thermal coal, power",Coal and China energy proxy,coal,energy,coal
+601899.SS,Zijin Mining A-share,China,Asia,Mining,"copper, gold, lithium",China metals mining A-share proxy,copper,gold,A-share
+600019.SS,Baoshan Iron & Steel,China,Asia,Steel,"steel, iron ore, coal",China steel-cycle proxy,steel_chain,coal,steel
+1766.HK,CRRC,China,Asia,Rail equipment,"steel, copper, industrial capex",Rail and infrastructure manufacturing proxy,steel_chain,copper,rail
+3993.HK,CMOC Group,China,Asia,Mining,"cobalt, copper, molybdenum",Cobalt/copper critical-materials proxy,cobalt,copper,critical minerals
+7203.T,Toyota Motor,Japan,Asia,Autos,"steel, aluminum, batteries",Auto manufacturing and materials demand proxy,steel_chain,battery,autos
+6752.T,Panasonic Holdings,Japan,Asia,Electronics/batteries,"batteries, electronics materials",Battery/electronics materials proxy,battery,semiconductor,batteries
+7011.T,Mitsubishi Heavy Industries,Japan,Asia,Heavy industry/aerospace,"aerospace, defense, energy",Aerospace/defense/heavy industry proxy,aerospace,defense,heavy industry
+5401.T,Nippon Steel,Japan,Asia,Steel,"steel, coal, iron ore",Steel-chain proxy,steel_chain,coal,steel
+5713.T,Sumitomo Metal Mining,Japan,Asia,Mining/materials,"nickel, copper, battery materials",Battery/metals proxy,nickel,battery,mining
+6501.T,Hitachi,Japan,Asia,Industrials/electronics,"industrial systems, grid, electronics",Industrial/electrification proxy,macro_beta,semiconductor,industrial systems
+6301.T,Komatsu,Japan,Asia,Mining machinery,"mining equipment, steel",Mining equipment cycle proxy,steel_chain,copper,machinery
+005930.KS,Samsung Electronics,South Korea,Asia,Semiconductors/electronics,"semiconductors, electronics metals",Global semiconductor/electronics proxy,semiconductor,rare_earths,chips
+000660.KS,SK Hynix,South Korea,Asia,Semiconductors,"memory chips, electronics metals",Memory semiconductor proxy,semiconductor,rare_earths,memory
+005380.KS,Hyundai Motor,South Korea,Asia,Autos,"steel, batteries, aluminum",Auto manufacturing/materials proxy,steel_chain,battery,autos
+373220.KS,LG Energy Solution,South Korea,Asia,Batteries,"lithium, nickel, cobalt, battery chain",Battery manufacturer proxy,battery,nickel,batteries
+051910.KS,LG Chem,South Korea,Asia,Chemicals/batteries,"chemicals, batteries",Battery/chemical materials proxy,battery,energy,chemicals
+005490.KS,POSCO Holdings,South Korea,Asia,Steel/materials,"steel, lithium, battery materials",Steel + battery material proxy,steel_chain,battery,steel
+010130.KS,Korea Zinc,South Korea,Asia,Metals refining,"zinc, lead, nickel, battery recycling",Base metals/refining proxy,zinc,battery,refining
+2330.TW,Taiwan Semiconductor Manufacturing,Taiwan,Asia,Semiconductors,"chips, electronics, geopolitical risk",Semiconductor and Taiwan geopolitical proxy,semiconductor,geopolitical_sensitivity,foundry
+2317.TW,Hon Hai Precision Industry,Taiwan,Asia,Electronics manufacturing,"electronics, copper, semiconductors",Contract electronics manufacturing proxy,semiconductor,copper,EMS
+2308.TW,Delta Electronics,Taiwan,Asia,Power electronics,"electrification, power electronics",Power electronics/electrification proxy,semiconductor,copper,power
+2454.TW,MediaTek,Taiwan,Asia,Semiconductors,"chips, electronics",Fabless semiconductor proxy,semiconductor,macro_beta,chips
+2357.TW,ASUSTeK Computer,Taiwan,Asia,Electronics,"electronics, semiconductors",Electronics manufacturing proxy,semiconductor,macro_beta,PCs
+2303.TW,United Microelectronics,Taiwan,Asia,Semiconductors,foundry chips,Semiconductor foundry proxy,semiconductor,geopolitical_sensitivity,chips
+RELIANCE.NS,Reliance Industries,India,Asia,Energy/chemicals,"oil, gas, petrochemicals",Energy and petrochemical proxy,energy,macro_beta,refining
+TATASTEEL.NS,Tata Steel,India,Asia,Steel,"steel, coal, iron ore",India steel-chain proxy,steel_chain,coal,steel
+HINDALCO.NS,Hindalco Industries,India,Asia,Aluminum/copper,"aluminum, copper",Aluminum/copper producer proxy,aluminum,copper,metals
+LT.NS,Larsen & Toubro,India,Asia,Engineering/construction,"industrial capex, defense, infrastructure",Industrial/infrastructure proxy,steel_chain,defense,engineering
+TATAMOTORS.NS,Tata Motors,India,Asia,Autos,"steel, aluminum, batteries",Auto manufacturing/materials proxy,steel_chain,battery,autos
+HAL.NS,Hindustan Aeronautics,India,Asia,Aerospace/defense,"defense, aerospace, titanium",Defense/aerospace proxy,defense,aerospace,aircraft
+COALINDIA.NS,Coal India,India,Asia,Coal,"thermal coal, energy",Coal and power generation proxy,coal,energy,coal
+BHP.AX,BHP Group,Australia,Asia-Pacific,Mining,"iron ore, copper, coal",Global mining and materials proxy,steel_chain,copper,mining
+RIO.AX,Rio Tinto Australia,Australia,Asia-Pacific,Mining,"iron ore, aluminum, copper",Iron ore/aluminum/copper proxy,steel_chain,aluminum,mining
+FMG.AX,Fortescue,Australia,Asia-Pacific,Iron ore,"iron ore, green energy",Iron ore and China steel-cycle proxy,steel_chain,energy,iron ore
+MIN.AX,Mineral Resources,Australia,Asia-Pacific,Mining/lithium,"lithium, iron ore",Lithium/iron ore proxy,battery,steel_chain,mining
+LYC.AX,Lynas Rare Earths,Australia,Asia-Pacific,Rare earths,"rare earths, NdPr",Rare earth supply-chain proxy,rare_earths,geopolitical_sensitivity,rare earths
+PLS.AX,Pilbara Minerals,Australia,Asia-Pacific,Lithium,lithium spodumene,Lithium producer proxy,battery,geopolitical_sensitivity,lithium
+IGO.AX,IGO,Australia,Asia-Pacific,Nickel/lithium,"nickel, lithium",Battery materials proxy,battery,nickel,mining
+IMP.JO,Impala Platinum,South Africa,Africa,PGM mining,"platinum, palladium",Platinum group metals proxy,precious_industrial,geopolitical_sensitivity,PGM
+ANG.JO,AngloGold Ashanti,South Africa,Africa,Gold mining,gold,Gold/safe-haven mining proxy,gold,geopolitical_sensitivity,gold
+AMS.JO,Anglo American Platinum,South Africa,Africa,PGM mining,"platinum, palladium",Auto catalyst and PGM proxy,precious_industrial,geopolitical_sensitivity,PGM
+GFI.JO,Gold Fields,South Africa,Africa,Gold mining,gold,Gold mining proxy,gold,geopolitical_sensitivity,gold
+SSW.JO,Sibanye Stillwater,South Africa,Africa,PGM/gold,"platinum, palladium, gold",PGM and precious metals proxy,precious_industrial,gold,PGM
+EXX.JO,Exxaro Resources,South Africa,Africa,Coal/mining,"coal, energy",Coal/energy proxy,coal,energy,coal
+ABBN.SW,ABB,Switzerland,Europe,Electrification/automation,"copper, electrification, industrial automation",Electrification and automation proxy,copper,macro_beta,automation
+SIKA.SW,Sika,Switzerland,Europe,Construction chemicals,"construction, chemicals",Construction materials proxy,steel_chain,macro_beta,construction
+HOLN.SW,Holcim,Switzerland,Europe,Cement/materials,"cement, construction, energy",Cement and construction materials proxy,energy,steel_chain,cement
+SLHN.SW,Swiss Steel,Switzerland,Europe,Steel,specialty steel,Specialty steel proxy,steel_chain,energy,steel
+VATN.SW,VAT Group,Switzerland,Europe,Vacuum valves,"semiconductors, industrial equipment",Semiconductor equipment supply-chain proxy,semiconductor,macro_beta,equipment
+UHR.SW,Swatch Group,Switzerland,Europe,Manufacturing/luxury,"precision manufacturing, gold",Precision manufacturing and gold sensitivity proxy,gold,macro_beta,watches
+EQNR.OL,Equinor,Norway,Europe,Energy,"oil, gas, LNG",Energy security and gas proxy,energy,geopolitical_sensitivity,energy
+NHY.OL,Norsk Hydro,Norway,Europe,Aluminum,"aluminum, energy",Aluminum and electricity-cost proxy,aluminum,energy,aluminum
+YAR.OL,Yara International,Norway,Europe,Fertilizers/chemicals,"gas, ammonia, fertilizers",Natural-gas/chemical input proxy,energy,macro_beta,fertilizers
+KOG.OL,Kongsberg Gruppen,Norway,Europe,Defense/marine,"defense, aerospace, marine systems",Defense and maritime systems proxy,defense,aerospace,defense
+AKRBP.OL,Aker BP,Norway,Europe,Oil/gas,"oil, gas",Oil/gas production proxy,energy,geopolitical_sensitivity,energy

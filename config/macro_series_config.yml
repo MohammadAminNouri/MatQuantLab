@@ -1,5 +1,6 @@
 macro_proxies:
   USDIndex: "DX-Y.NYB"
+  VIX: "^VIX"
   US10Y: "^TNX"
   US13Week: "^IRX"
   TIPSRealRateProxy: "TIP"
@@ -8,7 +9,7 @@ macro_proxies:
   EURUSD: "EURUSD=X"
   USDCNY: "CNY=X"
   USDJPY: "JPY=X"
-  VIX: "^VIX"
   FreightProxy: "BDRY"
-  OilEquityProxy: "XLE"
+  EnergyEquity: "XLE"
   UtilityPowerProxy: "XLU"
+  Semiconductors: "SOXX"

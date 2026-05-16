@@ -1,62 +1,63 @@
 themes:
-  critical_minerals:
-    weight: 1.2
-    words:
-      - "critical minerals"
-      - "rare earth"
-      - "rare earths"
-      - "lithium"
-      - "cobalt"
-      - "nickel"
-      - "graphite"
-      - "titanium"
-      - "uranium"
-      - "tungsten"
-  export_controls:
-    weight: 1.5
-    words:
-      - "export controls"
-      - "export ban"
-      - "export restriction"
-      - "sanctions"
-      - "tariff"
-      - "embargo"
-      - "trade restrictions"
-  shipping_disruption:
-    weight: 1.1
-    words:
-      - "Red Sea"
-      - "Suez"
-      - "Panama Canal"
-      - "shipping disruption"
-      - "freight disruption"
-      - "port strike"
-      - "supply disruption"
-  defense_aerospace:
-    weight: 1.0
-    words:
-      - "defense spending"
-      - "aerospace backlog"
-      - "aircraft production"
-      - "missile"
-      - "fighter jet"
-      - "defense procurement"
-  china_taiwan:
+  war_conflict:
+    long_name: "War / conflict escalation"
+    weight: 1.6
+    words: ["war", "conflict", "missile", "drone attack", "air strike", "invasion", "military escalation", "mobilization"]
+  middle_east_iran:
+    long_name: "Middle East / Iran / Hormuz risk"
+    weight: 1.8
+    words: ["Iran", "Middle East", "Strait of Hormuz", "Hormuz", "Persian Gulf", "Israel", "Gaza", "Lebanon", "Yemen", "Houthis", "Red Sea"]
+  fuel_gas_energy:
+    long_name: "Fuel, oil, gas and energy security"
     weight: 1.4
-    words:
-      - "China export controls"
-      - "Taiwan"
-      - "South China Sea"
-      - "semiconductor restrictions"
-      - "China rare earth"
-      - "China sanctions"
-  energy_security:
+    words: ["oil", "fuel", "gas", "natural gas", "LNG", "energy security", "refinery", "pipeline", "OPEC", "uranium", "nuclear fuel"]
+  critical_minerals:
+    long_name: "Critical minerals and strategic raw materials"
+    weight: 1.3
+    words: ["critical minerals", "rare earth", "rare earths", "lithium", "cobalt", "nickel", "graphite", "titanium", "uranium", "tungsten", "neodymium", "dysprosium", "terbium", "praseodymium"]
+  export_controls:
+    long_name: "Export controls, sanctions and tariffs"
+    weight: 1.7
+    words: ["export controls", "export ban", "export restriction", "sanctions", "tariff", "embargo", "trade restrictions", "blacklist"]
+  shipping_disruption:
+    long_name: "Shipping and logistics disruption"
+    weight: 1.25
+    words: ["shipping disruption", "Suez", "Panama Canal", "port strike", "freight", "container shipping", "supply disruption", "tanker"]
+  defense_aerospace:
+    long_name: "Defense and aerospace procurement"
+    weight: 1.05
+    words: ["defense spending", "aerospace backlog", "aircraft production", "fighter jet", "missile", "defense procurement", "munitions"]
+  china_taiwan:
+    long_name: "China / Taiwan / semiconductor restrictions"
+    weight: 1.5
+    words: ["China export controls", "Taiwan", "South China Sea", "semiconductor restrictions", "China rare earth", "China sanctions", "Beijing"]
+  gold_silver:
+    long_name: "Gold, silver and precious-metal stress"
     weight: 1.0
-    words:
-      - "oil disruption"
-      - "natural gas"
-      - "uranium"
-      - "nuclear fuel"
-      - "energy security"
-      - "LNG"
-default_query: '(critical minerals OR rare earth OR lithium OR cobalt OR nickel OR graphite OR titanium OR uranium OR tungsten OR sanctions OR export controls OR tariffs OR shipping disruption OR defense spending OR energy security)'
+    words: ["gold", "silver", "safe haven", "central bank gold", "precious metals", "bullion", "real yields"]
+default_terms:
+  - critical minerals
+  - rare earth
+  - lithium
+  - cobalt
+  - nickel
+  - graphite
+  - titanium
+  - uranium
+  - tungsten
+  - sanctions
+  - export controls
+  - tariffs
+  - shipping disruption
+  - defense spending
+  - war
+  - Middle East
+  - Iran
+  - Strait of Hormuz
+  - oil
+  - fuel
+  - gas
+  - LNG
+  - VIX
+  - gold
+  - silver

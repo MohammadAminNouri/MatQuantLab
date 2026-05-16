@@ -2,7 +2,6 @@ indices:
   USA:
     SP500: "^GSPC"
     Nasdaq100: "^NDX"
-    NasdaqComposite: "^IXIC"
     Russell2000: "^RUT"
     DowJones: "^DJI"
     Semiconductors: "SOXX"
@@ -16,20 +15,17 @@ indices:
     FTSE100: "^FTSE"
     FTSEMIB: "FTSEMIB.MI"
     EuropeETF: "VGK"
-    EuropeIndustrials: "EXH4.DE"
-    EuropeMaterials: "EXV6.DE"
+    EuropeIndustrials: "EXI"
+    EuropeMaterials: "MXI"
   China_HK:
     CSI300: "000300.SS"
     SSEComposite: "000001.SS"
     HangSeng: "^HSI"
-    HangSengTechETF: "3033.HK"
     ChinaLargeCap: "FXI"
-    ChinaMaterials: "CHIM"
   Japan:
     Nikkei225: "^N225"
     TopixETF: "1306.T"
     JapanETF: "EWJ"
-    JapanIndustrials: "1624.T"
   Global:
     MSCIWorldProxy: "URTH"
     EmergingMarkets: "EEM"

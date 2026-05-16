@@ -1,26 +1,21 @@
-asset,theme,region,copper,aluminum,nickel,steel_chain,battery,rare_earths,energy,coal,uranium,aerospace,defense,semiconductor,additive_manufacturing,china_sensitivity,geopolitical_sensitivity,macro_beta,liquidity_risk
-XME,Mining/metals,USA,0.7,0.5,0.4,0.8,0.2,0.2,0.5,0.4,0.1,0.1,0.1,0.1,0,0.5,0.4,0.7,0.4
-COPX,Copper miners,Global,1,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0,0,0,0,0.6,0.4,0.7,0.5
-PICK,Global mining,Global,0.6,0.5,0.5,0.8,0.3,0.2,0.5,0.3,0.1,0,0,0,0,0.6,0.5,0.7,0.4
-XLB,Materials sector,USA,0.4,0.5,0.2,0.4,0.2,0.1,0.5,0.2,0,0.1,0,0,0,0.3,0.2,0.7,0.2
-XLI,Industrials,USA,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.2,0,0.4,0.2,0.1,0.1,0.3,0.2,0.8,0.2
-VIS,Broad industrials,USA,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.2,0,0.4,0.2,0.1,0.1,0.3,0.2,0.8,0.2
-ITA,Aerospace/defense,USA,0.1,0.6,0.5,0.3,0.1,0.4,0.6,0.1,0.1,1,1,0.2,0.1,0.2,0.8,0.6,0.2
-XAR,Aerospace supply chain,USA,0.2,0.7,0.5,0.4,0.1,0.3,0.6,0.1,0.1,1,0.8,0.2,0.1,0.2,0.7,0.7,0.3
-PRNT,Additive manufacturing ETF,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.2,0.2,1,0.3,0.3,0.8,0.6
-DDD,Additive manufacturing,USA,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
-SSYS,Additive manufacturing,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
-MTLS,Digital manufacturing,Europe,0.2,0.3,0.2,0.1,0.1,0.1,0.3,0.1,0,0.2,0.1,0.1,0.9,0.2,0.2,0.8,0.6
-NNDM,Advanced electronics/AM,Israel,0.3,0.2,0.2,0.1,0.3,0.2,0.2,0.1,0,0.2,0.1,0.5,0.8,0.4,0.4,1,0.9
-SOXX,Semiconductors,USA,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0.0,0,0.1,0.3,1,0.1,0.8,0.6,1,0.2
-XLE,Energy,USA,0.1,0.1,0.1,0.1,0.1,0.1,1,0.5,0.1,0,0,0,0,0.2,0.8,0.7,0.2
-URA,Uranium/nuclear,Global,0.1,0.1,0.1,0.1,0.1,0.2,0.5,0.1,1,0.1,0.2,0.1,0,0.4,0.9,0.8,0.5
-LIT,Battery materials,Global,0.3,0.2,0.4,0.1,1,0.3,0.3,0.1,0,0.1,0.1,0.2,0.1,0.7,0.6,0.9,0.5
-REMX,Rare earths,Global,0.2,0.2,0.2,0.1,0.4,1,0.2,0.1,0,0.2,0.6,0.5,0.1,0.8,0.9,0.9,0.6
-SLX,Steel,Global,0.3,0.3,0.2,1,0.1,0.1,0.5,1,0,0.1,0.1,0.0,0,0.6,0.4,0.8,0.4
-SOXX,Semiconductors,USA,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0,0,0.1,0.3,1,0.1,0.8,0.6,1,0.2
-SPY,US market benchmark,USA,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0.2,0.1,0.2,0.1,0.2,0.2,1,0.1
-EEM,Emerging markets,Global,0.5,0.4,0.3,0.4,0.3,0.3,0.5,0.2,0.1,0.1,0.1,0.3,0.1,0.8,0.6,0.9,0.4
-URTH,World equities,Global,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0.2,0.1,0.2,0.1,0.3,0.2,1,0.1
-MXI,Global materials,Global,0.5,0.5,0.3,0.5,0.3,0.2,0.4,0.2,0.1,0.1,0.1,0.1,0,0.4,0.3,0.7,0.3
-EXI,Global industrials,Global,0.3,0.4,0.2,0.4,0.1,0.1,0.5,0.2,0,0.4,0.2,0.2,0.1,0.4,0.3,0.8,0.2
+asset,full_name,theme,region,copper,aluminum,nickel,steel_chain,battery,rare_earths,energy,coal,uranium,aerospace,defense,semiconductor,additive_manufacturing,china_sensitivity,geopolitical_sensitivity,macro_beta,liquidity_risk
+XME,SPDR S&P Metals & Mining ETF,Mining/metals,USA,0.7,0.5,0.4,0.8,0.2,0.2,0.5,0.4,0.1,0.1,0.1,0.1,0,0.5,0.4,0.7,0.4
+COPX,Global X Copper Miners ETF,Copper miners,Global,1,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0,0,0,0,0.6,0.4,0.7,0.5
+PICK,iShares MSCI Global Metals & Mining Producers ETF,Global mining,Global,0.6,0.5,0.5,0.8,0.3,0.2,0.5,0.3,0.1,0,0,0,0,0.6,0.5,0.7,0.4
+XLB,Materials Select Sector SPDR Fund,Materials sector,USA,0.4,0.5,0.2,0.4,0.2,0.1,0.5,0.2,0,0.1,0,0,0,0.3,0.2,0.7,0.2
+XLI,Industrial Select Sector SPDR Fund,Industrials,USA,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.2,0,0.4,0.2,0.1,0.1,0.3,0.2,0.8,0.2
+ITA,iShares U.S. Aerospace & Defense ETF,Aerospace/defense,USA,0.1,0.6,0.5,0.3,0.1,0.4,0.6,0.1,0.1,1,1,0.2,0.1,0.2,0.8,0.6,0.2
+XAR,SPDR S&P Aerospace & Defense ETF,Aerospace supply chain,USA,0.2,0.7,0.5,0.4,0.1,0.3,0.6,0.1,0.1,1,0.8,0.2,0.1,0.2,0.7,0.7,0.3
+PRNT,The 3D Printing ETF,Additive manufacturing ETF,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.2,0.2,1,0.3,0.3,0.8,0.6
+DDD,3D Systems Corporation,Additive manufacturing,USA,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
+SSYS,Stratasys Ltd.,Additive manufacturing,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
+MTLS,Materialise NV,Digital manufacturing,Europe,0.2,0.3,0.2,0.1,0.1,0.1,0.3,0.1,0,0.2,0.1,0.1,0.9,0.2,0.2,0.8,0.6
+NNDM,Nano Dimension Ltd.,Advanced electronics/AM,Israel,0.3,0.2,0.2,0.1,0.3,0.2,0.2,0.1,0,0.2,0.1,0.5,0.8,0.4,0.4,1,0.9
+SOXX,iShares Semiconductor ETF,Semiconductors,USA,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0,0,0.1,0.3,1,0.1,0.8,0.6,1,0.2
+XLE,Energy Select Sector SPDR Fund,Energy,USA,0.1,0.1,0.1,0.1,0.1,0.1,1,0.5,0.1,0,0,0,0,0.2,0.8,0.7,0.2
+URA,Global X Uranium ETF,Uranium/nuclear,Global,0.1,0.1,0.1,0.1,0.1,0.2,0.5,0.1,1,0.1,0.2,0.1,0,0.4,0.9,0.8,0.5
+LIT,Global X Lithium & Battery Tech ETF,Battery materials,Global,0.3,0.2,0.4,0.1,1,0.3,0.3,0.1,0,0.1,0.1,0.2,0.1,0.7,0.6,0.9,0.5
+REMX,VanEck Rare Earth/Strategic Metals ETF,Rare earths,Global,0.2,0.2,0.2,0.1,0.4,1,0.2,0.1,0,0.2,0.6,0.5,0.1,0.8,0.9,0.9,0.6
+SLX,VanEck Steel ETF,Steel,Global,0.3,0.3,0.2,1,0.1,0.1,0.5,1,0,0.1,0.1,0,0,0.6,0.4,0.8,0.4
+SPY,SPDR S&P 500 ETF Trust,US market benchmark,USA,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0.2,0.1,0.2,0.1,0.2,0.2,1,0.1
+EEM,iShares MSCI Emerging Markets ETF,Emerging markets,Global,0.5,0.4,0.3,0.4,0.3,0.3,0.5,0.2,0.1,0.1,0.1,0.3,0.1,0.8,0.6,0.9,0.4

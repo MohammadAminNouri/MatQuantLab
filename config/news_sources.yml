@@ -1,0 +1,19 @@
+rss_sources:
+  GCIRD_Main:
+    url: "https://gcird.org/feed/"
+    focus: "open-access geopolitics, development, energy and critical-minerals research"
+  GCIRD_Critical_Minerals:
+    url: "https://gcird.org/topics/critical-minerals-supply-chains/feed/"
+    focus: "critical minerals and supply chains"
+  Mining_Com:
+    url: "https://www.mining.com/feed/"
+    focus: "mining, metals, copper, gold, lithium, supply chain"
+  World_Gold_Council:
+    url: "https://www.gold.org/goldhub/rss"
+    focus: "gold market and strategic gold analysis"
+  World_Nuclear_News:
+    url: "https://world-nuclear-news.org/rss"
+    focus: "uranium, nuclear energy and energy security"
+  OilPrice:
+    url: "https://oilprice.com/rss/main"
+    focus: "oil, fuel, gas, Middle East energy risk"
