@@ -1,122 +1,162 @@
-MatQuantLab
-Critical Materials Intelligence Layer for Cross-Asset ML Research
-MatQuantLab is a materials-informed quantitative research project that tests whether signals from metals, energy, USD pressure, volatility, and industrial stress contain lead-lag information for assets linked to:
-mining and metals
-copper producers
-aerospace and defense
-industrials
-additive manufacturing
-broad market benchmarks
-Unlike generic “stock prediction” projects, MatQuantLab starts from a materials-engineering hypothesis:
-> Physical supply-chain stress in metals, energy, USD pressure, and industrial volatility may contain early information about industrial equity risk.
-This repository is built as a portfolio/research project, not as financial advice or a live trading system.
+# MatQuantLab
+
+## Critical Materials Intelligence Layer for Cross-Asset ML Research
+
+MatQuantLab is a materials-informed machine learning and quantitative research platform focused on one core question:
+
+> Can stress in metals, energy, volatility, USD pressure, and industrial supply chains contain early information about industrial and manufacturing-related assets?
+
+Unlike generic “AI stock prediction” projects, MatQuantLab combines:
+
+* materials engineering
+* commodity stress analysis
+* industrial exposure mapping
+* additive manufacturing watchlists
+* cross-asset ML research
+* interactive dashboards
+
+The project is designed as a research and portfolio platform — not a trading bot.
+
 ---
-Live Dashboard
-The interactive dashboard is deployed with Streamlit:
-Live app: https://matquantlab-gegdszewybwbbbdvm5kbnc.streamlit.app/
-Main Streamlit file:
+
+# Live Interactive Dashboard
+
+### Live app
+
+[MatQuantLab Live Dashboard](https://matquantlab-gegdszewybwbbbdvm5kbnc.streamlit.app/?utm_source=chatgpt.com)
+
+The dashboard updates market data using Yahoo Finance through `yfinance`.
+
+---
+
+# What The Dashboard Actually Does
+
+The app tries to answer questions like:
+
+* Does copper stress affect mining equities?
+* Does oil stress pressure aerospace and industrial companies?
+* Does volatility lead additive-manufacturing drawdowns?
+* Do industrial-materials signals contain lead-lag information?
+* Which macro/materials factors matter most for different sectors?
+
+The dashboard transforms commodity and macro signals into interpretable research indicators.
+
+---
+
+# Main Dashboard Sections
+
+## 1. Industrial Stress Radar
+
+This is the core monitoring panel.
+
+It builds a weighted stress index called:
+
 ```text
-app/live_dashboard.py
+CMSI v2 = Critical Materials Stress Index
 ```
-The dashboard includes:
-Industrial Stress Radar
-Critical Materials Stress Index v2
-Lead-Lag Signal Lab
-ML Explainability
-Additive Manufacturing Watchlist
-Toy research backtest
-Raw price/feature inspection
----
-Core Research Question
-Can critical-materials and macro stress signals predict future returns or drawdown risk in industrial, mining, aerospace, defense, and additive-manufacturing-linked assets?
-MatQuantLab tests whether information from:
-copper
-aluminum
-oil
-gold
-USD index
-VIX
-metals-sector ETFs
-aerospace/defense ETFs
-additive-manufacturing-linked equities
-has measurable relationships with future asset returns.
----
-Why This Project Is Different
-Most beginner quant projects ask:
-> Can machine learning predict stock prices?
-MatQuantLab asks a more domain-specific question:
-> Can materials-market stress and industrial supply-chain information be transformed into interpretable cross-asset signals?
-The niche angle is the combination of:
-```text
-materials engineering
-commodity shocks
-industrial supply chains
-aerospace and defense exposure
-additive manufacturing assets
-machine learning
-lead-lag analysis
-interactive dashboarding
-```
-This makes the project more connected to materials engineering and metallurgical/industrial knowledge than generic finance ML projects.
----
-Critical Materials Stress Index v2
-The dashboard builds a weighted stress index from commodity and macro proxies:
-Component	Interpretation
-Copper	industrial demand and electrification proxy
-Aluminum	energy-intensive manufacturing proxy
-Oil	transport, energy, and production-cost pressure
-USD	commodity-pressure and global liquidity proxy
-VIX	market stress and risk appetite
-Gold	defensive stress / safe-haven proxy
-The dashboard classifies the stress state as:
+
+The index combines:
+
+| Signal   | Why It Matters                         |
+| -------- | -------------------------------------- |
+| Copper   | industrial demand and electrification  |
+| Aluminum | energy-intensive manufacturing         |
+| Oil      | transport and production cost pressure |
+| USD      | commodity pressure and liquidity       |
+| VIX      | market fear and risk appetite          |
+| Gold     | defensive/safe-haven behavior          |
+
+The dashboard classifies the environment into:
+
 ```text
 Normal
-Elevated stress
-Extreme stress
-Relief / easing
+Elevated Stress
+Extreme Stress
+Relief / Easing
 ```
+
+### How to understand it
+
+* High CMSI → industrial/materials stress increasing
+* Low CMSI → stress easing
+* Rising VIX + rising CMSI → possible industrial risk regime
+* Falling copper + weak mining ETFs → possible metals slowdown
+
 ---
-Asset Universe
-Example assets currently used:
-Ticker	Theme
-XME	mining and metals producers
-COPX	copper miners
-PICK	global metals and mining
-XLB	US materials sector
-ITA	defense and aerospace
-XAR	aerospace supply chain
-XLI	industrials
-VIS	broad industrials
-PRNT	additive manufacturing ETF
-DDD	additive manufacturing single name
-SSYS	additive manufacturing single name
-MTLS	AM software/services
-NNDM	advanced electronics / AM
-SPY	broad market benchmark
+
+## 2. Lead-Lag Signal Lab
+
+This section tests whether a signal may lead future returns.
+
+Example:
+
+```text
+Copper shock today
+↓
+Mining ETF moves later
+```
+
+The app computes correlations between stress signals and future returns.
+
+### Important metrics
+
+| Metric       | Meaning                          |
+| ------------ | -------------------------------- |
+| Spearman IC  | strength of ranking relationship |
+| Pearson Corr | linear relationship              |
+| Rows         | amount of aligned data           |
+
+### How to interpret
+
+* Positive IC → feature may lead positive future return
+* Negative IC → feature may lead weakness/risk
+* Large absolute value → stronger relationship
+
+This is NOT proof of profitability. It is research exploration.
+
 ---
-Dashboard Tabs
-1. Industrial Stress Radar
-Shows CMSI v2, metals stress, macro-risk stress, current stress drivers, and early-warning notes.
-2. Lead-Lag Lab
-Tests whether stress features have a relationship with future returns at the selected horizon.
-Outputs include:
-Spearman information coefficient
-Pearson correlation
-number of aligned observations
-3. ML Explainability
-Trains a simple research model on the selected asset and horizon.
-Current model options:
+
+## 3. ML Explainability
+
+This section trains simple ML models.
+
+Current models:
+
+```text
 Ridge Regression
 Random Forest
-The tab shows:
-RMSE
-prediction correlation
-prediction vs realized future return
-feature importance
-latest model-implied pressure
-4. Additive Manufacturing Watchlist
-Tracks AM-linked assets and tests their relationship to the Critical Materials Stress Index.
-Example AM watchlist:
+```
+
+The app predicts future returns using stress features.
+
+### Outputs
+
+| Output                 | Meaning                                            |
+| ---------------------- | -------------------------------------------------- |
+| RMSE                   | prediction error                                   |
+| Prediction Correlation | alignment between predictions and realized returns |
+| Feature Importance     | which variables influenced the model most          |
+
+### Example interpretation
+
+```text
+Prediction negative
+Main drivers:
+- VIX stress high
+- USD strengthening
+- Copper weakening
+```
+
+The goal is interpretability, not black-box hype.
+
+---
+
+## 4. Additive Manufacturing Watchlist
+
+This section tracks additive-manufacturing-linked assets.
+
+Current basket:
+
 ```text
 PRNT
 DDD
@@ -124,163 +164,213 @@ SSYS
 MTLS
 NNDM
 ```
-5. Backtest
-A toy research backtest:
+
+The goal is to test whether AM-linked equities respond differently to industrial/materials stress than broad industrial sectors.
+
+### Example question
+
 ```text
-long when prediction > 0
-short when prediction < 0
+Does high industrial stress hurt additive-manufacturing equities more than normal industrial ETFs?
 ```
-This is only for research visualization. It does not include professional transaction-cost, slippage, borrow-cost, liquidity, or capacity modeling.
-6. Raw Data
-Displays downloaded prices and created features for transparency.
+
+This is one of the niche parts of the project.
+
 ---
-Data Source
-The live dashboard uses Yahoo Finance data through `yfinance`.
-Example proxies:
-Signal	Yahoo ticker
-Copper futures	HG=F
-Aluminum futures	ALI=F
-Oil futures	CL=F
-Gold futures	GC=F
-USD index	DX-Y.NYB
-VIX	^VIX
-Important limitations:
-free data can be delayed
-intraday data can be incomplete or rate-limited
-Yahoo/yfinance is not institutional-grade market data
-results may change depending on data availability
-For professional use, the data layer should be replaced with audited market data.
----
-Automated Research Pipeline
-The repository also includes a GitHub Actions pipeline that generates research outputs automatically.
-Generated outputs include:
+
+## 5. Toy Research Backtest
+
+This is NOT a production trading system.
+
+The backtest only demonstrates how a signal might behave historically.
+
+Current simplified logic:
+
 ```text
-outputs/research_summary.md
+Prediction > 0 → long
+Prediction < 0 → short
+```
+
+Missing professional components:
+
+* transaction costs
+* slippage
+* liquidity limits
+* borrow costs
+* portfolio optimization
+* walk-forward validation
+
+The backtest exists for research visualization only.
+
+---
+
+## 6. Raw Data
+
+Shows downloaded prices and generated features.
+
+Useful for:
+
+* debugging
+* verifying downloaded data
+* checking signal construction
+* understanding feature behavior
+
+---
+
+# Asset Universe
+
+| Ticker | Theme                      |
+| ------ | -------------------------- |
+| XME    | mining and metals          |
+| COPX   | copper miners              |
+| PICK   | global mining              |
+| XLB    | materials sector           |
+| ITA    | aerospace and defense      |
+| XAR    | aerospace supply chain     |
+| XLI    | industrials                |
+| VIS    | broad industrials          |
+| PRNT   | additive manufacturing ETF |
+| DDD    | additive manufacturing     |
+| SSYS   | additive manufacturing     |
+| MTLS   | digital manufacturing      |
+| NNDM   | advanced manufacturing     |
+| SPY    | market benchmark           |
+
+---
+
+# Automated Research Pipeline
+
+The repository also includes GitHub Actions automation.
+
+Generated outputs include:
+
+```text
 outputs/figures/cmsi.png
 outputs/figures/signal_decay_heatmap.png
 outputs/figures/model_leaderboard.png
 outputs/figures/backtest_equity_curve.png
 outputs/figures/feature_importance.png
-data/processed/
 ```
-Run it manually from:
+
+The pipeline can be run manually from:
+
 ```text
-Actions → Run MatQuantLab Research Pipeline → Run workflow
+Actions → Run MatQuantLab Research Pipeline
 ```
+
 ---
-Automated Research Outputs
-Critical Materials Stress Index
+
+# Automated Research Outputs
+
+## Critical Materials Stress Index
+
 ![CMSI](outputs/figures/cmsi.png)
-Lead-Lag Signal Heatmap
+
+## Lead-Lag Signal Heatmap
+
 ![Heatmap](outputs/figures/signal_decay_heatmap.png)
-ML Model Comparison
+
+## ML Model Comparison
+
 ![Models](outputs/figures/model_leaderboard.png)
-Strategy Equity Curve
+
+## Strategy Equity Curve
+
 ![Backtest](outputs/figures/backtest_equity_curve.png)
-Feature Importance
+
+## Feature Importance
+
 ![Importance](outputs/figures/feature_importance.png)
+
 ---
-How to Run Locally
-Clone the repository:
-```bash
-git clone https://github.com/MohammadAminNouri/MatQuantLab.git
-cd MatQuantLab
-```
+
+# How To Run Locally
+
 Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
-Run the live dashboard:
+
+Run dashboard:
+
 ```bash
 streamlit run app/live_dashboard.py
 ```
-Run the automated research pipeline if available:
-```bash
-python scripts/run_daily_update.py
-```
+
 ---
-How to Use the Live App
-Suggested first experiment:
+
+# Suggested First Experiments
+
+### Mining / metals stress
+
 ```text
-Target asset: XME
+Asset: XME
 Interval: 5m
 Period: 5d
 Model: Ridge
-Prediction horizon: 12 bars
-Shock window: 20 bars
 ```
-Then test:
+
+### Copper sensitivity
+
 ```text
-COPX
-ITA
-XAR
-PRNT
+Asset: COPX
+```
+
+### Aerospace / defense stress
+
+```text
+Asset: ITA
+```
+
+### Additive manufacturing sensitivity
+
+```text
+Asset: PRNT
 DDD
 SSYS
-MTLS
 ```
-Look at:
-CMSI v2 value
-stress regime
-top stress drivers
-lead-lag IC table
-feature importance
-latest model-implied pressure
+
 ---
-Example Research Questions
-MatQuantLab can be used to explore questions such as:
-Do copper shocks lead copper-mining equities?
-Does USD strength weaken metals-linked assets?
-Does oil stress affect aerospace and industrial names?
-Does CMSI v2 predict drawdown risk in mining ETFs?
-Are additive-manufacturing-linked equities more sensitive to industrial stress than broad industrial ETFs?
-Do ML models add information beyond simple lead-lag correlations?
-Which stress features matter most for each asset group?
+
+# Current Project Status
+
+Working:
+
+* interactive Streamlit dashboard
+* commodity stress analysis
+* lead-lag signal testing
+* ML explainability
+* additive-manufacturing watchlist
+* automated GitHub Actions pipeline
+* automated figure generation
+
+Still improving:
+
+* walk-forward validation
+* transaction costs
+* factor neutralization
+* sector-neutral ranking
+* regime clustering
+* professional data feeds
+* portfolio optimization
+
 ---
-Current Status
-This project is currently a research/portfolio prototype.
-Working components:
-Streamlit interactive dashboard
-Yahoo/yfinance data download
-CMSI v2 stress index
-lead-lag correlation analysis
-Ridge and Random Forest modeling
-feature importance
-AM watchlist
-toy backtest
-GitHub Actions research output generator
-Still to improve:
-proper transaction-cost modeling
-walk-forward validation
-factor neutralization
-sector-neutral portfolio construction
-survivorship-bias controls
-professional market data source
-model stability analysis
-regime clustering
-better risk metrics
+
+# Important Disclaimer
+
+MatQuantLab is a research and educational project.
+
+It is NOT:
+
+* financial advice
+* a production trading system
+* guaranteed alpha
+* institutional-grade execution infrastructure
+
+Free market data may contain delays, errors, and survivorship bias.
+
 ---
-Roadmap
-Planned upgrades:
-sector-neutral ranking
-rolling Sharpe and drawdown metrics
-transaction-cost and turnover model
-walk-forward validation by date
-regime clustering
-feature orthogonalization
-factor exposure decomposition
-Streamlit downloadable reports
-better additive manufacturing exposure map
-industrial supply-chain news/sentiment layer
----
-Research Disclaimer
-This repository is for educational and research purposes only.
-It is not:
-investment advice
-a trading recommendation
-a production trading system
-a guaranteed alpha model
-Free market data may contain errors, missing values, delays, and survivorship bias. Any financial interpretation should be treated as experimental.
----
-One-Line Summary
-MatQuantLab converts critical-materials and macro stress information into interpretable cross-asset ML signals for mining, aerospace, defense, industrial, and additive-manufacturing-linked assets.
+
+# One-Line Summary
+
+MatQuantLab converts critical-materials and industrial stress information into interpretable cross-asset ML research signals for mining, aerospace, defense, industrial, and additive-manufacturing-linked assets.
