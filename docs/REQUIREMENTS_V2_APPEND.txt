@@ -1,0 +1,8 @@
+# Add these to requirements.txt if they are missing:
+streamlit
+pyyaml
+yfinance
+scikit-learn
+matplotlib
+pandas
+numpy

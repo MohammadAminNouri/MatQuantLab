@@ -1,0 +1,66 @@
+# MatQuantLab V2 — Interactive experiment configuration
+# This file is safe to edit directly on GitHub.
+# The live dashboard reads these defaults.
+
+assets:
+  - XME
+  - COPX
+  - PICK
+  - XLB
+  - ITA
+  - XAR
+  - XLI
+  - VIS
+  - PRNT
+  - SPY
+
+commodity_features:
+  Copper: "HG=F"
+  Aluminum: "ALI=F"
+  Oil: "CL=F"
+  Gold: "GC=F"
+  USD: "DX-Y.NYB"
+  VIX: "^VIX"
+
+default_asset: XME
+default_interval: 5m
+default_period: 5d
+default_horizon_minutes: 60
+default_refresh_seconds: 60
+
+intervals:
+  - 1m
+  - 5m
+  - 15m
+  - 30m
+  - 60m
+  - 1d
+
+periods:
+  - 1d
+  - 5d
+  - 1mo
+  - 3mo
+  - 6mo
+  - 1y
+
+models:
+  - Ridge
+  - RandomForest
+
+feature_sets:
+  metals:
+    - Copper
+    - Aluminum
+    - Gold
+  macro:
+    - USD
+    - VIX
+    - Oil
+  all:
+    - Copper
+    - Aluminum
+    - Oil
+    - Gold
+    - USD
+    - VIX
