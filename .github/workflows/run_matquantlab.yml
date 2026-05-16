@@ -1,1 +1,331 @@
-{"name":"Run MatQuantLab Research Pipeline","on":{"workflow_dispatch":{}},"permissions":{"contents":"write"},"jobs":{"run-pipeline":{"runs-on":"ubuntu-latest","steps":[{"name":"Checkout repository","uses":"actions/checkout@v4"},{"name":"Set up Python","uses":"actions/setup-python@v5","with":{"python-version":"3.11"}},{"name":"Install dependencies","run":"python -m pip install --upgrade pip\npip install numpy pandas scipy scikit-learn matplotlib yfinance"},{"name":"Run standalone ML research pipeline","run":"mkdir -p scripts outputs/figures data/processed\ncat > scripts/github_research_pipeline.py <<'PY'\nfrom pathlib import Path\nimport warnings\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom scipy.stats import spearmanr\nfrom sklearn.ensemble import RandomForestRegressor\nfrom sklearn.linear_model import Ridge, ElasticNet\nfrom sklearn.metrics import mean_absolute_error, r2_score\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\n\nROOT = Path.cwd()\nDATA = ROOT / \"data\" / \"processed\"\nOUT = ROOT / \"outputs\"\nFIG = OUT / \"figures\"\nfor p in [DATA, OUT, FIG]:\n    p.mkdir(parents=True, exist_ok=True)\n\nASSETS = [\"SPY\",\"XLB\",\"XME\",\"COPX\",\"PICK\",\"ITA\",\"XAR\",\"XLI\",\"VIS\",\"PRNT\",\"DDD\",\"SSYS\",\"MTLS\",\"NNDM\"]\nCOMMODITIES = [\"HG=F\",\"CL=F\",\"NG=F\",\"GC=F\",\"SI=F\",\"^VIX\",\"^TNX\",\"DX-Y.NYB\"]\nALL = ASSETS + COMMODITIES\n\ndef synthetic_prices():\n    dates = pd.bdate_range(\"2016-01-01\", periods=2100)\n    rng = np.random.default_rng(42)\n    cu = rng.normal(0, 0.012, len(dates))\n    oil = rng.normal(0, 0.014, len(dates))\n    vix = rng.normal(0, 0.020, len(dates))\n    data = {}\n    for t in COMMODITIES:\n        r = rng.normal(0, 0.010, len(dates))\n        if t == \"HG=F\": r = cu\n        if t == \"CL=F\": r = oil\n        if t == \"^VIX\": r = vix\n        data[t] = 100 * np.exp(np.cumsum(r))\n    for i, t in enumerate(ASSETS):\n        beta_cu = 0.12 if t in [\"XME\",\"COPX\",\"PICK\",\"XLB\"] else 0.035\n        beta_oil = -0.06 if t in [\"ITA\",\"XAR\",\"PRNT\"] else 0.02\n        beta_vix = -0.12 if t != \"SPY\" else -0.08\n        eps = rng.normal(0, 0.012 + 0.001*(i % 4), len(dates))\n        r = 0.00015 + beta_cu*np.roll(cu, 5) + beta_oil*np.roll(oil, 5) + beta_vix*np.roll(vix, 2) + eps\n        data[t] = 100 * np.exp(np.cumsum(r))\n    return pd.DataFrame(data, index=dates)\n\ndef fetch_prices():\n    try:\n        import yfinance as yf\n        px = yf.download(ALL, start=\"2016-01-01\", auto_adjust=True, progress=False, threads=False)\n        if isinstance(px.columns, pd.MultiIndex):\n            px = px[\"Close\"]\n        else:\n            px = px[[\"Close\"]].rename(columns={\"Close\": ALL[0]})\n        px = px.dropna(axis=1, thresh=500).ffill()\n        usable_assets = [c for c in ASSETS if c in px.columns]\n        usable_comms = [c for c in COMMODITIES if c in px.columns]\n        if len(usable_assets) >= 5 and len(usable_comms) >= 3:\n            print(\"Using live Yahoo Finance data.\")\n            return px\n    except Exception as e:\n        print(\"Live download failed, using demo data:\", e)\n    print(\"Using deterministic demo data.\")\n    return synthetic_prices()\n\ndef zscore(s, window=126):\n    return (s - s.rolling(window).mean()) / s.rolling(window).std()\n\ndef make_features(prices):\n    parts = []\n    for t in [c for c in COMMODITIES if c in prices.columns]:\n        for w in [5, 20, 60]:\n            parts.append(zscore(prices[t].pct_change(w), 126).rename(f\"shock_z_{w}d__{t}\"))\n    features = pd.concat(parts, axis=1)\n    shock20 = [c for c in features.columns if c.startswith(\"shock_z_20d\")]\n    features[\"critical_materials_stress_index\"] = zscore(features[shock20].abs().mean(axis=1), 126)\n    return features.replace([np.inf, -np.inf], np.nan)\n\ndef make_panel(prices, features, horizon=20):\n    frames = []\n    for asset in [a for a in ASSETS if a in prices.columns]:\n        d = features.copy()\n        d[\"date\"] = d.index\n        d[\"asset\"] = asset\n        d[\"asset_mom_20\"] = prices[asset].pct_change(20)\n        d[\"asset_mom_60\"] = prices[asset].pct_change(60)\n        d[\"asset_vol_20\"] = prices[asset].pct_change().rolling(20).std()\n        d[\"target_fwd_return\"] = prices[asset].pct_change(horizon).shift(-horizon)\n        frames.append(d)\n    panel = pd.concat(frames, ignore_index=True)\n    return panel.dropna(subset=[\"target_fwd_return\"])\n\ndef signal_decay(prices, features):\n    feats = [c for c in features.columns if \"shock_z_20d\" in c][:8] + [\"critical_materials_stress_index\"]\n    rows = []\n    for f in feats:\n        for h in [5,20,60]:\n            vals = []\n            for a in [x for x in ASSETS if x in prices.columns]:\n                tmp = pd.DataFrame({\"x\": features[f], \"y\": prices[a].pct_change(h).shift(-h)}).dropna()\n                if len(tmp) > 150:\n                    ic = spearmanr(tmp[\"x\"], tmp[\"y\"]).correlation\n                    if np.isfinite(ic):\n                        vals.append(ic)\n            rows.append({\"feature\": f, \"horizon\": f\"{h}D\", \"mean_ic\": float(np.mean(vals)) if vals else np.nan})\n    return pd.DataFrame(rows)\n\ndef train_models(panel):\n    ignore = {\"date\",\"asset\",\"target_fwd_return\"}\n    feature_cols = [c for c in panel.columns if c not in ignore and pd.api.types.is_numeric_dtype(panel[c])]\n    clean = panel[[\"date\",\"asset\",\"target_fwd_return\"] + feature_cols].replace([np.inf,-np.inf], np.nan).dropna()\n    dates = np.sort(clean[\"date\"].unique())\n    split = dates[int(len(dates)*0.70)]\n    train = clean[clean[\"date\"] < split]\n    test = clean[clean[\"date\"] >= split]\n    models = {\n        \"Ridge\": make_pipeline(StandardScaler(), Ridge(alpha=10.0)),\n        \"ElasticNet\": make_pipeline(StandardScaler(), ElasticNet(alpha=0.001, l1_ratio=0.25, max_iter=5000)),\n        \"RandomForest\": RandomForestRegressor(n_estimators=40, max_depth=5, min_samples_leaf=40, random_state=7, n_jobs=1),\n    }\n    rows, pred_frames = [], []\n    for name, model in models.items():\n        model.fit(train[feature_cols], train[\"target_fwd_return\"])\n        pred = model.predict(test[feature_cols])\n        ic = spearmanr(test[\"target_fwd_return\"], pred).correlation\n        rows.append({\"model\": name, \"spearman_ic\": float(ic), \"mae\": float(mean_absolute_error(test[\"target_fwd_return\"], pred)), \"r2\": float(r2_score(test[\"target_fwd_return\"], pred))})\n        tmp = test[[\"date\",\"asset\",\"target_fwd_return\"]].copy()\n        tmp[\"prediction\"] = pred\n        tmp[\"model\"] = name\n        pred_frames.append(tmp)\n    return pd.DataFrame(rows).sort_values(\"spearman_ic\", ascending=False), pd.concat(pred_frames), feature_cols\n\ndef backtest(preds, model):\n    p = preds[preds[\"model\"] == model].copy()\n    p[\"rank\"] = p.groupby(\"date\")[\"prediction\"].rank(method=\"first\")\n    p[\"n\"] = p.groupby(\"date\")[\"prediction\"].transform(\"count\")\n    p[\"weight\"] = 0.0\n    p.loc[p[\"rank\"] <= 2, \"weight\"] = -0.25\n    p.loc[p[\"rank\"] > p[\"n\"] - 2, \"weight\"] = 0.25\n    daily = p.assign(contrib=p[\"weight\"] * p[\"target_fwd_return\"]).groupby(\"date\")[\"contrib\"].sum()\n    daily = daily / 20.0 - 0.00025\n    return (1 + daily).cumprod()\n\ndef plot_all(prices, features, decay, leaderboard, preds):\n    plt.figure(figsize=(10,4))\n    features[\"critical_materials_stress_index\"].dropna().plot()\n    plt.title(\"Critical Materials Stress Index\")\n    plt.tight_layout(); plt.savefig(FIG/\"cmsi.png\", dpi=160); plt.close()\n\n    heat = decay.pivot(index=\"feature\", columns=\"horizon\", values=\"mean_ic\")\n    plt.figure(figsize=(8, max(4, 0.35*len(heat))))\n    plt.imshow(heat.fillna(0), aspect=\"auto\")\n    plt.xticks(range(len(heat.columns)), heat.columns)\n    plt.yticks(range(len(heat.index)), heat.index, fontsize=7)\n    plt.colorbar(label=\"Mean Spearman IC\")\n    plt.title(\"Signal Decay: Feature \u00d7 Horizon\")\n    plt.tight_layout(); plt.savefig(FIG/\"signal_decay_heatmap.png\", dpi=160); plt.close()\n\n    plt.figure(figsize=(7,4))\n    plt.bar(leaderboard[\"model\"], leaderboard[\"spearman_ic\"])\n    plt.ylabel(\"Spearman IC\")\n    plt.title(\"ML Model Leaderboard\")\n    plt.tight_layout(); plt.savefig(FIG/\"model_leaderboard.png\", dpi=160); plt.close()\n\n    best = leaderboard.iloc[0][\"model\"]\n    eq = backtest(preds, best)\n    plt.figure(figsize=(9,4))\n    eq.plot()\n    plt.title(f\"Prototype Long/Short Equity Curve \u2014 {best}\")\n    plt.ylabel(\"Growth of $1\")\n    plt.tight_layout(); plt.savefig(FIG/\"backtest_equity_curve.png\", dpi=160); plt.close()\n\n    imp = decay.dropna().groupby(\"feature\")[\"mean_ic\"].mean().abs().sort_values(ascending=False).head(12)\n    plt.figure(figsize=(8,4))\n    imp.iloc[::-1].plot(kind=\"barh\")\n    plt.title(\"Feature Importance Proxy\")\n    plt.tight_layout(); plt.savefig(FIG/\"feature_importance.png\", dpi=160); plt.close()\n    return eq\n\ndef write_report(prices, features, leaderboard, eq):\n    r = eq.pct_change().dropna()\n    sharpe = np.sqrt(252) * r.mean() / (r.std() + 1e-12)\n    best = leaderboard.iloc[0]\n    md = f\"\"\"# MatQuantLab Research Summary\n\n## Core question\nCan critical-materials, commodity, and macro-stress signals predict future returns in mining, materials, aerospace, defense, industrial, and additive-manufacturing-linked assets?\n\n## Pipeline result\n- Price matrix: `{prices.shape}`\n- Feature matrix: `{features.shape}`\n- Start date: `{prices.index.min().date()}`\n- End date: `{prices.index.max().date()}`\n\n## Best ML model\n- Model: **{best['model']}**\n- Spearman IC: `{best['spearman_ic']:.4f}`\n- MAE: `{best['mae']:.4f}`\n- R\u00b2: `{best['r2']:.4f}`\n\n## Prototype backtest\n- Final growth of $1: `{eq.iloc[-1]:.3f}`\n- Approx. Sharpe: `{sharpe:.2f}`\n\n## Figures\n![Critical Materials Stress Index](figures/cmsi.png)\n\n![Signal Decay Heatmap](figures/signal_decay_heatmap.png)\n\n![Model Leaderboard](figures/model_leaderboard.png)\n\n![Backtest Equity Curve](figures/backtest_equity_curve.png)\n\n![Feature Importance](figures/feature_importance.png)\n\n## Warning\nThis is a research prototype, not financial advice and not a production trading system.\n\"\"\"\n    (OUT/\"research_summary.md\").write_text(md, encoding=\"utf-8\")\n\ndef main():\n    prices = fetch_prices()\n    prices.to_csv(DATA/\"prices.csv\")\n    features = make_features(prices)\n    features.to_csv(DATA/\"features.csv\")\n    panel = make_panel(prices, features, 20)\n    panel.to_csv(DATA/\"panel_20d.csv\", index=False)\n    decay = signal_decay(prices, features)\n    decay.to_csv(OUT/\"signal_decay.csv\", index=False)\n    leaderboard, preds, feature_cols = train_models(panel)\n    leaderboard.to_csv(OUT/\"model_leaderboard.csv\", index=False)\n    preds.to_csv(OUT/\"predictions.csv\", index=False)\n    eq = plot_all(prices, features, decay, leaderboard, preds)\n    write_report(prices, features, leaderboard, eq)\n    print(\"MatQuantLab workflow completed.\")\n    print(leaderboard)\n\nif __name__ == \"__main__\":\n    main()\nPY\npython scripts/github_research_pipeline.py"},{"name":"Commit generated outputs","run":"git config user.name \"github-actions[bot]\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\ngit add scripts/github_research_pipeline.py outputs data/processed || true\ngit commit -m \"Generate MatQuantLab ML outputs\" || echo \"No generated changes to commit\"\ngit push || true"}]}}}
+name: Run MatQuantLab Research Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies directly
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pandas matplotlib scikit-learn yfinance
+
+      - name: Create self-contained MatQuantLab pipeline
+        run: |
+          mkdir -p scripts data/processed outputs/figures outputs/reports
+          cat > scripts/github_research_pipeline.py <<'PY'
+          from pathlib import Path
+          import warnings
+          warnings.filterwarnings("ignore")
+
+          import numpy as np
+          import pandas as pd
+          import matplotlib.pyplot as plt
+          from sklearn.ensemble import RandomForestRegressor
+          from sklearn.linear_model import Ridge
+          from sklearn.metrics import mean_squared_error
+
+          OUT = Path("outputs")
+          FIG = OUT / "figures"
+          REP = OUT / "reports"
+          DATA = Path("data/processed")
+          for p in [FIG, REP, DATA]:
+              p.mkdir(parents=True, exist_ok=True)
+
+          np.random.seed(42)
+
+          ASSETS = ["SPY", "XLB", "XME", "COPX", "PICK", "XLI", "ITA", "XAR", "PRNT"]
+          FACTORS = ["HG=F", "CL=F", "NG=F", "GC=F", "^VIX", "^TNX", "DX-Y.NYB"]
+          ALL_TICKERS = ASSETS + FACTORS
+          SOURCE_NOTE = "Yahoo Finance via yfinance"
+
+          def download_prices():
+              try:
+                  import yfinance as yf
+                  raw = yf.download(
+                      ALL_TICKERS,
+                      start="2014-01-01",
+                      auto_adjust=True,
+                      progress=False,
+                      threads=True,
+                  )
+                  if isinstance(raw.columns, pd.MultiIndex):
+                      if "Close" in raw.columns.get_level_values(0):
+                          px = raw["Close"].copy()
+                      else:
+                          px = raw.xs("Close", axis=1, level=1).copy()
+                  else:
+                      px = raw.copy()
+                  px = px.dropna(how="all").ffill().dropna(axis=1, thresh=500)
+                  keep = [c for c in ALL_TICKERS if c in px.columns]
+                  px = px[keep]
+                  if px.shape[0] < 700 or len(set(ASSETS).intersection(px.columns)) < 5:
+                      raise ValueError("Not enough reliable downloaded data")
+                  return px, SOURCE_NOTE
+              except Exception as exc:
+                  print("Live download failed, using deterministic fallback data:", exc)
+                  dates = pd.bdate_range("2014-01-01", periods=2600)
+                  cols = ALL_TICKERS
+                  common = np.random.normal(0, 0.008, (len(dates), 1))
+                  metal = np.random.normal(0, 0.010, (len(dates), 1))
+                  noise = np.random.normal(0, 0.012, (len(dates), len(cols)))
+                  rets = 0.35 * common + 0.20 * metal + noise
+                  prices = 100 * np.exp(pd.DataFrame(rets, index=dates, columns=cols).cumsum())
+                  return prices, "deterministic fallback data because live download failed"
+
+          def zscore(s, window=60):
+              mu = s.rolling(window).mean()
+              sig = s.rolling(window).std()
+              return (s - mu) / sig
+
+          prices, source_note = download_prices()
+          prices.to_csv(DATA / "prices.csv")
+          returns = prices.pct_change().replace([np.inf, -np.inf], np.nan)
+
+          available_assets = [a for a in ASSETS if a in prices.columns]
+          available_factors = [f for f in FACTORS if f in prices.columns]
+
+          features = pd.DataFrame(index=prices.index)
+          for f in available_factors:
+              r20 = prices[f].pct_change(20)
+              features[f"shock20_{f.replace('=','').replace('^','')}"] = zscore(r20, 120)
+              features[f"mom60_{f.replace('=','').replace('^','')}"] = prices[f].pct_change(60)
+
+          stress_cols = [c for c in features.columns if c.startswith("shock20_")]
+          if stress_cols:
+              signed = features[stress_cols].copy()
+              features["critical_materials_stress_index"] = signed.mean(axis=1)
+          else:
+              features["critical_materials_stress_index"] = 0.0
+
+          # Asset-specific technical features.
+          for a in available_assets:
+              features[f"mom20_{a}"] = prices[a].pct_change(20)
+              features[f"vol20_{a}"] = returns[a].rolling(20).std() * np.sqrt(252)
+
+          features = features.replace([np.inf, -np.inf], np.nan).dropna()
+          features.to_csv(DATA / "features.csv")
+
+          horizon = 20
+          future = prices[available_assets].pct_change(horizon).shift(-horizon)
+          next_day = returns[available_assets].shift(-1)
+
+          # Lead-lag IC heatmap.
+          base_feature_cols = [c for c in features.columns if not c.startswith("mom20_") and not c.startswith("vol20_")]
+          ic = pd.DataFrame(index=base_feature_cols, columns=available_assets, dtype=float)
+          for feat in base_feature_cols:
+              for asset in available_assets:
+                  aligned = pd.concat([features[feat], future[asset]], axis=1).dropna()
+                  if len(aligned) > 100:
+                      ic.loc[feat, asset] = aligned.iloc[:, 0].corr(aligned.iloc[:, 1], method="spearman")
+          ic.to_csv(DATA / "lead_lag_ic.csv")
+
+          fig, ax = plt.subplots(figsize=(11, max(4, 0.35 * len(ic))))
+          arr = ic.fillna(0).values.astype(float)
+          im = ax.imshow(arr, aspect="auto")
+          ax.set_xticks(range(len(ic.columns)))
+          ax.set_xticklabels(ic.columns, rotation=45, ha="right")
+          ax.set_yticks(range(len(ic.index)))
+          ax.set_yticklabels(ic.index, fontsize=8)
+          ax.set_title("Lead-Lag Spearman IC: Features vs 20D Future Returns")
+          fig.colorbar(im, ax=ax, label="Spearman IC")
+          fig.tight_layout()
+          fig.savefig(FIG / "lead_lag_ic_heatmap.png", dpi=180)
+          plt.close(fig)
+
+          # CMSI plot.
+          fig, ax = plt.subplots(figsize=(11, 4))
+          features["critical_materials_stress_index"].dropna().plot(ax=ax)
+          ax.axhline(0, linewidth=1)
+          ax.set_title("Critical Materials Stress Index")
+          ax.set_ylabel("z-score composite")
+          fig.tight_layout()
+          fig.savefig(FIG / "critical_materials_stress_index.png", dpi=180)
+          plt.close(fig)
+
+          # ML dataset.
+          rows = []
+          for asset in available_assets:
+              asset_features = features[base_feature_cols + [f"mom20_{asset}", f"vol20_{asset}"]].copy()
+              target = future[asset].rename("target")
+              nd = next_day[asset].rename("next_day_return")
+              df = pd.concat([asset_features, target, nd], axis=1).dropna()
+              df["asset"] = asset
+              rows.append(df)
+          panel = pd.concat(rows).sort_index()
+          panel.to_csv(DATA / "ml_panel.csv")
+
+          feature_cols = [c for c in panel.columns if c not in ["target", "next_day_return", "asset"]]
+          dates = sorted(panel.index.unique())
+          split_date = dates[int(len(dates) * 0.70)]
+          train = panel[panel.index <= split_date]
+          test = panel[panel.index > split_date]
+
+          X_train = train[feature_cols].fillna(0)
+          y_train = train["target"]
+          X_test = test[feature_cols].fillna(0)
+          y_test = test["target"]
+
+          models = {
+              "Ridge": Ridge(alpha=10.0),
+              "RandomForest": RandomForestRegressor(
+                  n_estimators=250,
+                  max_depth=5,
+                  min_samples_leaf=20,
+                  random_state=42,
+                  n_jobs=-1,
+              ),
+          }
+          leaderboard = []
+          predictions = test[["asset", "next_day_return", "target"]].copy()
+          for name, model in models.items():
+              model.fit(X_train, y_train)
+              pred = pd.Series(model.predict(X_test), index=X_test.index, name=name)
+              predictions[name] = pred
+              ic_model = pred.corr(y_test, method="spearman")
+              rmse = mean_squared_error(y_test, pred, squared=False)
+              leaderboard.append({"model": name, "spearman_ic": ic_model, "rmse": rmse})
+
+          leaderboard = pd.DataFrame(leaderboard).sort_values("spearman_ic", ascending=False)
+          leaderboard.to_csv(DATA / "model_leaderboard.csv", index=False)
+          predictions.to_csv(DATA / "predictions.csv")
+
+          fig, ax = plt.subplots(figsize=(7, 4))
+          ax.bar(leaderboard["model"], leaderboard["spearman_ic"])
+          ax.axhline(0, linewidth=1)
+          ax.set_title("ML Model Leaderboard: Out-of-Sample Spearman IC")
+          ax.set_ylabel("Spearman IC")
+          fig.tight_layout()
+          fig.savefig(FIG / "model_leaderboard.png", dpi=180)
+          plt.close(fig)
+
+          # Feature importance.
+          rf = models["RandomForest"]
+          imp = pd.Series(rf.feature_importances_, index=feature_cols).sort_values(ascending=False).head(12)
+          fig, ax = plt.subplots(figsize=(9, 5))
+          ax.barh(imp.index[::-1], imp.values[::-1])
+          ax.set_title("Random Forest Feature Importance")
+          fig.tight_layout()
+          fig.savefig(FIG / "feature_importance.png", dpi=180)
+          plt.close(fig)
+
+          # Simple long-short strategy from best model predictions.
+          best_model = leaderboard.iloc[0]["model"]
+          pred_table = predictions.reset_index().pivot_table(index="index", columns="asset", values=best_model)
+          ret_table = predictions.reset_index().pivot_table(index="index", columns="asset", values="next_day_return")
+          gross = []
+          turnover = []
+          prev_w = pd.Series(0.0, index=available_assets)
+          for dt in pred_table.index:
+              scores = pred_table.loc[dt].dropna()
+              if len(scores) < 4:
+                  continue
+              longs = scores.nlargest(min(3, len(scores)//2)).index
+              shorts = scores.nsmallest(min(3, len(scores)//2)).index
+              w = pd.Series(0.0, index=available_assets)
+              w.loc[longs] = 0.5 / len(longs)
+              w.loc[shorts] = -0.5 / len(shorts)
+              r = ret_table.loc[dt].reindex(available_assets).fillna(0.0)
+              gross_ret = float((w * r).sum())
+              turn = float((w - prev_w).abs().sum())
+              cost = turn * 0.0005
+              gross.append((dt, gross_ret, gross_ret - cost, turn))
+              prev_w = w
+          bt = pd.DataFrame(gross, columns=["date", "gross_return", "net_return", "turnover"]).set_index("date")
+          bt["gross_equity"] = (1 + bt["gross_return"]).cumprod()
+          bt["net_equity"] = (1 + bt["net_return"]).cumprod()
+          bt.to_csv(DATA / "backtest.csv")
+
+          fig, ax = plt.subplots(figsize=(11, 4))
+          bt[["gross_equity", "net_equity"]].plot(ax=ax)
+          ax.set_title("Long-Short Strategy Equity Curve: Gross vs Net")
+          ax.set_ylabel("Growth of $1")
+          fig.tight_layout()
+          fig.savefig(FIG / "backtest_equity_curve.png", dpi=180)
+          plt.close(fig)
+
+          def sharpe(x):
+              x = pd.Series(x).dropna()
+              if x.std() == 0 or len(x) < 5:
+                  return np.nan
+              return float(np.sqrt(252) * x.mean() / x.std())
+
+          net_sharpe = sharpe(bt["net_return"])
+          gross_sharpe = sharpe(bt["gross_return"])
+          max_dd = float((bt["net_equity"] / bt["net_equity"].cummax() - 1).min())
+
+          summary = f"""# MatQuantLab Research Summary
+
+          ## Status
+
+          The GitHub Actions pipeline ran successfully and generated data, machine-learning outputs, and figures.
+
+          ## Data source
+
+          {source_note}
+
+          ## Research question
+
+          Do industrial-metal, energy, volatility, rates, and USD shocks contain useful lead-lag information for materials, mining, aerospace, defense, industrial, and additive-manufacturing-linked assets?
+
+          ## Main generated files
+
+          - `outputs/figures/critical_materials_stress_index.png`
+          - `outputs/figures/lead_lag_ic_heatmap.png`
+          - `outputs/figures/model_leaderboard.png`
+          - `outputs/figures/feature_importance.png`
+          - `outputs/figures/backtest_equity_curve.png`
+          - `data/processed/lead_lag_ic.csv`
+          - `data/processed/model_leaderboard.csv`
+          - `data/processed/backtest.csv`
+
+          ## Model leaderboard
+
+          {leaderboard.to_markdown(index=False)}
+
+          ## Backtest diagnostics
+
+          - Gross Sharpe: {gross_sharpe:.3f}
+          - Net Sharpe after simple turnover cost: {net_sharpe:.3f}
+          - Max drawdown: {max_dd:.2%}
+          - Average daily turnover: {bt['turnover'].mean():.3f}
+
+          ## Interpretation warning
+
+          This is research code, not financial advice and not a production trading system. Free market data can contain errors and survivorship bias. The next research step is stronger walk-forward validation and deeper robustness tests.
+          """
+          (OUT / "research_summary.md").write_text(summary, encoding="utf-8")
+          (REP / "research_summary.md").write_text(summary, encoding="utf-8")
+          print("MatQuantLab pipeline finished successfully.")
+          print(leaderboard)
+          print("Figures written to", FIG)
+          PY
+
+      - name: Run MatQuantLab pipeline
+        run: |
+          python scripts/github_research_pipeline.py
+
+      - name: Commit generated outputs
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/github_research_pipeline.py data outputs
+          git commit -m "Generate MatQuantLab research outputs" || echo "No generated changes to commit"
+          git push
