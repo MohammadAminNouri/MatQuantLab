@@ -1,6 +1,5 @@
-# MatQuantLab V2 — Interactive experiment configuration
-# This file is safe to edit directly on GitHub.
-# The live dashboard reads these defaults.
+# MatQuantLab V3 — Critical Materials Intelligence Layer
+# Safe to edit directly on GitHub.
 
 assets:
   - XME
@@ -13,6 +12,10 @@ assets:
   - VIS
   - PRNT
   - SPY
+  - DDD
+  - SSYS
+  - MTLS
+  - NNDM
 
 commodity_features:
   Copper: "HG=F"
@@ -22,10 +25,69 @@ commodity_features:
   USD: "DX-Y.NYB"
   VIX: "^VIX"
 
+critical_material_weights:
+  Copper: 0.24
+  Aluminum: 0.18
+  Oil: 0.18
+  USD: 0.16
+  VIX: 0.16
+  Gold: 0.08
+
+exposure_map:
+  XME:
+    theme: "Mining and metals producers"
+    logic: "Direct exposure to metals-cycle, mining margins, commodity demand, and industrial stress."
+  COPX:
+    theme: "Copper miners"
+    logic: "High sensitivity to copper shocks, electrification demand, construction cycle, and China/industrial demand."
+  PICK:
+    theme: "Global metals and mining"
+    logic: "Diversified mining exposure; useful broad metals-cycle proxy."
+  XLB:
+    theme: "US materials sector"
+    logic: "Chemicals, materials, industrial input pricing, and macro-cycle sensitivity."
+  ITA:
+    theme: "Defense and aerospace"
+    logic: "Defense/aerospace demand, titanium/aluminum/energy input costs, and geopolitical-risk sensitivity."
+  XAR:
+    theme: "Aerospace supply chain"
+    logic: "Supplier-level aerospace cycle, materials cost pressure, and production-chain stress."
+  XLI:
+    theme: "Industrials"
+    logic: "Industrial-cycle proxy impacted by energy, rates, USD, and input-cost stress."
+  VIS:
+    theme: "Broad industrials"
+    logic: "Large diversified industrial exposure to macro and manufacturing conditions."
+  PRNT:
+    theme: "Additive manufacturing basket ETF"
+    logic: "3D printing / advanced manufacturing sentiment and industrial adoption proxy."
+  DDD:
+    theme: "Additive manufacturing single name"
+    logic: "3D printing equity proxy; higher idiosyncratic risk than ETF baskets."
+  SSYS:
+    theme: "Additive manufacturing single name"
+    logic: "Industrial 3D printing company; sensitive to capital spending and manufacturing cycle."
+  MTLS:
+    theme: "Additive manufacturing software/services"
+    logic: "Digital manufacturing exposure; useful for AM sentiment monitoring."
+  NNDM:
+    theme: "Advanced electronics/additive manufacturing"
+    logic: "High-volatility advanced manufacturing proxy; use cautiously."
+  SPY:
+    theme: "Broad market benchmark"
+    logic: "Benchmark to test whether a signal is just general market beta."
+
+additive_manufacturing_basket:
+  - PRNT
+  - DDD
+  - SSYS
+  - MTLS
+  - NNDM
+
 default_asset: XME
 default_interval: 5m
 default_period: 5d
-default_horizon_minutes: 60
+default_model: Ridge
 default_refresh_seconds: 60
 
 intervals:
@@ -47,20 +109,3 @@ periods:
 models:
   - Ridge
   - RandomForest
-
-feature_sets:
-  metals:
-    - Copper
-    - Aluminum
-    - Gold
-  macro:
-    - USD
-    - VIX
-    - Oil
-  all:
-    - Copper
-    - Aluminum
-    - Oil
-    - Gold
-    - USD
-    - VIX
