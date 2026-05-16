@@ -1,34 +1,14 @@
 macro_proxies:
-  USDIndex:
-    ticker: "DX-Y.NYB"
-    theme: "currency_stress"
-  US10Y:
-    ticker: "^TNX"
-    theme: "rates"
-  US13Week:
-    ticker: "^IRX"
-    theme: "short_rates"
-  TIPS:
-    ticker: "TIP"
-    theme: "real_rates_proxy"
-  HighYieldCredit:
-    ticker: "HYG"
-    theme: "credit_risk"
-  InvestmentGradeCredit:
-    ticker: "LQD"
-    theme: "credit_risk"
-  EURUSD:
-    ticker: "EURUSD=X"
-    theme: "fx"
-  USDCNY:
-    ticker: "CNY=X"
-    theme: "china_fx"
-  USDJPY:
-    ticker: "JPY=X"
-    theme: "japan_fx"
-  VIX:
-    ticker: "^VIX"
-    theme: "volatility"
-  BalticDryProxy:
-    ticker: "BDRY"
-    theme: "shipping_freight"
+  USDIndex: "DX-Y.NYB"
+  US10Y: "^TNX"
+  US13Week: "^IRX"
+  TIPSRealRateProxy: "TIP"
+  HighYieldCredit: "HYG"
+  InvestmentGradeCredit: "LQD"
+  EURUSD: "EURUSD=X"
+  USDCNY: "CNY=X"
+  USDJPY: "JPY=X"
+  VIX: "^VIX"
+  FreightProxy: "BDRY"
+  OilEquityProxy: "XLE"
+  UtilityPowerProxy: "XLU"

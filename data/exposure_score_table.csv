@@ -1,18 +1,26 @@
-asset,theme,copper,aluminum,nickel,steel_chain,battery,rare_earths,energy,uranium,aerospace,defense,additive_manufacturing,china_sensitivity,macro_beta
-XME,Mining/metals,0.7,0.5,0.4,0.8,0.2,0.2,0.5,0.1,0.1,0.1,0.0,0.5,0.7
-COPX,Copper miners,1.0,0.2,0.1,0.2,0.1,0.1,0.3,0.0,0.0,0.0,0.0,0.6,0.7
-PICK,Global mining,0.6,0.5,0.5,0.8,0.3,0.2,0.5,0.1,0.0,0.0,0.0,0.6,0.7
-XLB,Materials sector,0.4,0.5,0.2,0.4,0.2,0.1,0.5,0.0,0.1,0.0,0.0,0.3,0.7
-XLI,Industrials,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.0,0.4,0.2,0.1,0.3,0.8
-VIS,Broad industrials,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.0,0.4,0.2,0.1,0.3,0.8
-ITA,Aerospace/defense,0.1,0.6,0.5,0.3,0.1,0.4,0.6,0.1,1.0,1.0,0.1,0.2,0.6
-XAR,Aerospace supply chain,0.2,0.7,0.5,0.4,0.1,0.3,0.6,0.1,1.0,0.8,0.1,0.2,0.7
-PRNT,Additive manufacturing ETF,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.0,0.3,0.2,1.0,0.3,0.8
-DDD,Additive manufacturing,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.0,0.3,0.1,1.0,0.3,0.9
-SSYS,Additive manufacturing,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.0,0.3,0.1,1.0,0.3,0.9
-MTLS,Digital manufacturing,0.2,0.3,0.2,0.1,0.1,0.1,0.3,0.0,0.2,0.1,0.9,0.2,0.8
-NNDM,Advanced electronics/AM,0.3,0.2,0.2,0.1,0.3,0.2,0.2,0.0,0.2,0.1,0.8,0.4,1.0
-SOXX,Semiconductors,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0.0,0.1,0.3,0.1,0.8,1.0
-SPY,US market benchmark,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.0,0.2,0.1,0.1,0.2,1.0
-EEM,Emerging markets,0.5,0.4,0.3,0.4,0.3,0.3,0.5,0.1,0.1,0.1,0.1,0.8,0.9
-URTH,Global equities,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.0,0.2,0.1,0.1,0.3,1.0
+asset,theme,region,copper,aluminum,nickel,steel_chain,battery,rare_earths,energy,coal,uranium,aerospace,defense,semiconductor,additive_manufacturing,china_sensitivity,geopolitical_sensitivity,macro_beta,liquidity_risk
+XME,Mining/metals,USA,0.7,0.5,0.4,0.8,0.2,0.2,0.5,0.4,0.1,0.1,0.1,0.1,0,0.5,0.4,0.7,0.4
+COPX,Copper miners,Global,1,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0,0,0,0,0.6,0.4,0.7,0.5
+PICK,Global mining,Global,0.6,0.5,0.5,0.8,0.3,0.2,0.5,0.3,0.1,0,0,0,0,0.6,0.5,0.7,0.4
+XLB,Materials sector,USA,0.4,0.5,0.2,0.4,0.2,0.1,0.5,0.2,0,0.1,0,0,0,0.3,0.2,0.7,0.2
+XLI,Industrials,USA,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.2,0,0.4,0.2,0.1,0.1,0.3,0.2,0.8,0.2
+VIS,Broad industrials,USA,0.3,0.4,0.2,0.4,0.1,0.1,0.6,0.2,0,0.4,0.2,0.1,0.1,0.3,0.2,0.8,0.2
+ITA,Aerospace/defense,USA,0.1,0.6,0.5,0.3,0.1,0.4,0.6,0.1,0.1,1,1,0.2,0.1,0.2,0.8,0.6,0.2
+XAR,Aerospace supply chain,USA,0.2,0.7,0.5,0.4,0.1,0.3,0.6,0.1,0.1,1,0.8,0.2,0.1,0.2,0.7,0.7,0.3
+PRNT,Additive manufacturing ETF,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.2,0.2,1,0.3,0.3,0.8,0.6
+DDD,Additive manufacturing,USA,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
+SSYS,Additive manufacturing,Global,0.3,0.4,0.3,0.2,0.2,0.2,0.4,0.1,0,0.3,0.1,0.1,1,0.3,0.3,0.9,0.8
+MTLS,Digital manufacturing,Europe,0.2,0.3,0.2,0.1,0.1,0.1,0.3,0.1,0,0.2,0.1,0.1,0.9,0.2,0.2,0.8,0.6
+NNDM,Advanced electronics/AM,Israel,0.3,0.2,0.2,0.1,0.3,0.2,0.2,0.1,0,0.2,0.1,0.5,0.8,0.4,0.4,1,0.9
+SOXX,Semiconductors,USA,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0.0,0,0.1,0.3,1,0.1,0.8,0.6,1,0.2
+XLE,Energy,USA,0.1,0.1,0.1,0.1,0.1,0.1,1,0.5,0.1,0,0,0,0,0.2,0.8,0.7,0.2
+URA,Uranium/nuclear,Global,0.1,0.1,0.1,0.1,0.1,0.2,0.5,0.1,1,0.1,0.2,0.1,0,0.4,0.9,0.8,0.5
+LIT,Battery materials,Global,0.3,0.2,0.4,0.1,1,0.3,0.3,0.1,0,0.1,0.1,0.2,0.1,0.7,0.6,0.9,0.5
+REMX,Rare earths,Global,0.2,0.2,0.2,0.1,0.4,1,0.2,0.1,0,0.2,0.6,0.5,0.1,0.8,0.9,0.9,0.6
+SLX,Steel,Global,0.3,0.3,0.2,1,0.1,0.1,0.5,1,0,0.1,0.1,0.0,0,0.6,0.4,0.8,0.4
+SOXX,Semiconductors,USA,0.3,0.2,0.1,0.1,0.3,0.6,0.2,0,0,0.1,0.3,1,0.1,0.8,0.6,1,0.2
+SPY,US market benchmark,USA,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0.2,0.1,0.2,0.1,0.2,0.2,1,0.1
+EEM,Emerging markets,Global,0.5,0.4,0.3,0.4,0.3,0.3,0.5,0.2,0.1,0.1,0.1,0.3,0.1,0.8,0.6,0.9,0.4
+URTH,World equities,Global,0.2,0.2,0.1,0.2,0.1,0.1,0.3,0.1,0,0.2,0.1,0.2,0.1,0.3,0.2,1,0.1
+MXI,Global materials,Global,0.5,0.5,0.3,0.5,0.3,0.2,0.4,0.2,0.1,0.1,0.1,0.1,0,0.4,0.3,0.7,0.3
+EXI,Global industrials,Global,0.3,0.4,0.2,0.4,0.1,0.1,0.5,0.2,0,0.4,0.2,0.2,0.1,0.4,0.3,0.8,0.2
