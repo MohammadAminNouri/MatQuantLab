@@ -199,3 +199,10 @@ This is a research and education project, **not financial advice**. Free market 
 
 ### Feature Importance
 ![Importance](outputs/figures/feature_importance.png)
+## How to use this repo without local installation
+
+1. Open the Actions tab.
+2. Select Run MatQuantLab Research Pipeline.
+3. Click Run workflow.
+4. After it finishes, open outputs/figures and outputs/research_summary.md.
+5. Use the generated charts to inspect critical-materials signals and ML model behavior.
