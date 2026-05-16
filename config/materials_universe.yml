@@ -1,0 +1,115 @@
+# MatQuantLab V4 — Materials Universe
+# proxy_quality:
+#   high   = direct futures / highly relevant ETF proxy
+#   medium = ETF or indirect proxy
+#   low    = weak public-market proxy, included for research exploration only
+
+materials:
+  Copper:
+    ticker: "HG=F"
+    family: "industrial_metals"
+    role: "industrial demand, electrification, construction, manufacturing cycle"
+    proxy_quality: "high"
+    weight: 0.16
+  Aluminum:
+    ticker: "ALI=F"
+    family: "industrial_metals"
+    role: "energy-intensive manufacturing, aerospace, packaging, transport"
+    proxy_quality: "high"
+    weight: 0.12
+  Nickel:
+    ticker: "NICKEL"
+    family: "battery_defense_metals"
+    role: "stainless steel, superalloys, batteries"
+    proxy_quality: "low"
+    weight: 0.10
+  Zinc:
+    ticker: "ZNC=F"
+    family: "industrial_metals"
+    role: "galvanized steel, infrastructure, construction"
+    proxy_quality: "low"
+    weight: 0.06
+  IronOre:
+    ticker: "TIO=F"
+    family: "steel_chain"
+    role: "steel cycle and China construction/manufacturing proxy"
+    proxy_quality: "medium"
+    weight: 0.08
+  Steel:
+    ticker: "SLX"
+    family: "steel_chain"
+    role: "steel producers ETF proxy"
+    proxy_quality: "medium"
+    weight: 0.08
+  Lithium:
+    ticker: "LIT"
+    family: "battery_materials"
+    role: "battery supply chain and energy-transition sentiment"
+    proxy_quality: "medium"
+    weight: 0.08
+  Cobalt:
+    ticker: "COB.AX"
+    family: "battery_materials"
+    role: "battery/cathode supply-chain proxy"
+    proxy_quality: "low"
+    weight: 0.05
+  RareEarths:
+    ticker: "REMX"
+    family: "critical_minerals"
+    role: "rare earths, magnets, defense, EVs, wind, export-control sensitivity"
+    proxy_quality: "medium"
+    weight: 0.10
+  Uranium:
+    ticker: "URA"
+    family: "energy_security"
+    role: "nuclear energy, energy security, power supply"
+    proxy_quality: "medium"
+    weight: 0.08
+  Oil:
+    ticker: "CL=F"
+    family: "energy_inputs"
+    role: "transport, production cost, geopolitics, inflation"
+    proxy_quality: "high"
+    weight: 0.13
+  NaturalGas:
+    ticker: "NG=F"
+    family: "energy_inputs"
+    role: "energy-intensive manufacturing and Europe/industry energy stress"
+    proxy_quality: "high"
+    weight: 0.09
+  CoalThermal:
+    ticker: "KOL"
+    family: "energy_inputs"
+    role: "power generation / thermal coal proxy"
+    proxy_quality: "low"
+    weight: 0.05
+  CoalCoking:
+    ticker: "MT"
+    family: "steel_chain"
+    role: "steel-chain proxy; public proxy via steel producer exposure"
+    proxy_quality: "low"
+    weight: 0.04
+  Gold:
+    ticker: "GC=F"
+    family: "precious_stress"
+    role: "safe haven, real-rate stress, geopolitical stress"
+    proxy_quality: "high"
+    weight: 0.08
+  Silver:
+    ticker: "SI=F"
+    family: "precious_stress"
+    role: "precious + industrial demand hybrid"
+    proxy_quality: "high"
+    weight: 0.05
+  Platinum:
+    ticker: "PL=F"
+    family: "precious_industrial"
+    role: "auto catalysts, industrial demand, precious stress"
+    proxy_quality: "high"
+    weight: 0.04
+  Palladium:
+    ticker: "PA=F"
+    family: "precious_industrial"
+    role: "auto catalysts and supply-chain stress"
+    proxy_quality: "high"
+    weight: 0.04

@@ -1,0 +1,39 @@
+themes:
+  critical_minerals:
+    - "critical minerals"
+    - "rare earth"
+    - "rare earths"
+    - "lithium"
+    - "cobalt"
+    - "nickel"
+    - "graphite"
+    - "titanium"
+    - "uranium"
+  trade_policy:
+    - "export ban"
+    - "export controls"
+    - "tariff"
+    - "sanctions"
+    - "embargo"
+    - "trade restrictions"
+  conflict_shipping:
+    - "Red Sea"
+    - "Suez"
+    - "Panama Canal"
+    - "shipping disruption"
+    - "war"
+    - "conflict"
+    - "Middle East"
+  defense_aerospace:
+    - "defense spending"
+    - "aerospace backlog"
+    - "aircraft production"
+    - "missile"
+    - "fighter jet"
+  china_risk:
+    - "China export controls"
+    - "Taiwan"
+    - "semiconductor restrictions"
+    - "China rare earth"
+    - "South China Sea"
+default_query: '(critical minerals OR rare earth OR lithium OR cobalt OR nickel OR graphite OR titanium OR uranium OR sanctions OR export controls OR tariffs OR shipping disruption OR defense spending)'
